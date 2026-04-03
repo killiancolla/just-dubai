@@ -18,6 +18,7 @@ interface Yacht {
 
 export default function YachtCatalogue({ yachts }: { yachts: Yacht[] }) {
   const t = useTranslations("yachts");
+  const tCommon = useTranslations("common");
   const locale = useLocale();
 
   const [sort, setSort] = useState("alpha");
@@ -105,7 +106,7 @@ export default function YachtCatalogue({ yachts }: { yachts: Yacht[] }) {
                       />
                     ) : (
                       <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-[#888888] text-sm">
-                        Photo bientôt
+                        {tCommon("photo_soon")}
                       </div>
                     )}
                   </div>

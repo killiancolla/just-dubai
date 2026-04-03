@@ -62,7 +62,7 @@ export default function FeaturedVehicles({ vehicles }: Props) {
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center bg-[#EDE8DF]">
-                      <span className="text-[#999]">Photo bientôt disponible</span>
+                      <span className="text-[#999]">{t("common.photo_soon")}</span>
                     </div>
                   )}
                 </div>

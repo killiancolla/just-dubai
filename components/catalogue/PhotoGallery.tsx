@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 interface Props {
   photos: { url: string; thumbUrl: string; alt: string }[];
@@ -10,11 +11,12 @@ interface Props {
 export default function PhotoGallery({ photos, name }: Props) {
   const [current, setCurrent] = useState(0);
   const [lightbox, setLightbox] = useState(false);
+  const t = useTranslations("common");
 
   if (!photos.length) {
     return (
       <div className="flex h-[50vh] items-center justify-center bg-[#111111]">
-        <span className="text-[#888888]">Photo bientôt disponible</span>
+        <span className="text-[#888888]">{t("photo_soon")}</span>
       </div>
     );
   }

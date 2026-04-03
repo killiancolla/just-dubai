@@ -52,7 +52,7 @@
   },
   "yachts": {
     "title": "Yacht catalogue",
-    "subtitle": "Sail in exclusivity in Dubai waters",
+    "subtitle": "Explore Dubai from the sea aboard our luxury yachts",
     "filter_length": "Length (m)",
     "filter_capacity": "Capacity",
     "filter_price": "Price",
@@ -104,7 +104,7 @@
     "quick_links": "Quick links",
     "contact": "Contact",
     "follow": "Follow us",
-    "copyright": "© 2024 JustDubai. All rights reserved."
+    "copyright": "© 2026 JustDubai. All rights reserved."
   },
   "whatsapp": {
     "tooltip": "Book on WhatsApp",
@@ -114,6 +114,7 @@
   "common": {
     "view_all": "View all",
     "back": "Back",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "photo_soon": "Photo coming soon"
   }
 }

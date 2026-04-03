@@ -55,7 +55,7 @@ export default function FeaturedYachts({ yachts }: { yachts: Yacht[] }) {
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center bg-[#1a1a1a]">
-                      <span className="text-[#888888]">Photo bientôt disponible</span>
+                      <span className="text-[#888888]">{t("common.photo_soon")}</span>
                     </div>
                   )}
                 </div>

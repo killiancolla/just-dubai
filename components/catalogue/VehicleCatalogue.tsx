@@ -20,6 +20,7 @@ interface Vehicle {
 
 export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) {
   const t = useTranslations("cars");
+  const tCommon = useTranslations("common");
   const locale = useLocale();
 
   const [search, setSearch] = useState("");
@@ -128,7 +129,7 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
                       />
                     ) : (
                       <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-[#888888] text-sm">
-                        Photo bientôt
+                        {tCommon("photo_soon")}
                       </div>
                     )}
                   </div>

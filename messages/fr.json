@@ -52,7 +52,7 @@
   },
   "yachts": {
     "title": "Catalogue yachts",
-    "subtitle": "Naviguez en toute exclusivité dans les eaux de Dubaï",
+    "subtitle": "Découvrez Dubaï depuis la mer à bord de nos yachts de luxe",
     "filter_length": "Longueur (m)",
     "filter_capacity": "Capacité",
     "filter_price": "Prix",
@@ -104,7 +104,7 @@
     "quick_links": "Liens rapides",
     "contact": "Contact",
     "follow": "Nous suivre",
-    "copyright": "© 2024 JustDubai. Tous droits réservés."
+    "copyright": "© 2026 JustDubai. Tous droits réservés."
   },
   "whatsapp": {
     "tooltip": "Réserver sur WhatsApp",
@@ -114,6 +114,7 @@
   "common": {
     "view_all": "Voir tout",
     "back": "Retour",
-    "loading": "Chargement..."
+    "loading": "Chargement...",
+    "photo_soon": "Photo bientôt disponible"
   }
 }
