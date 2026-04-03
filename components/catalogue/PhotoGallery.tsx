@@ -14,7 +14,7 @@ export default function PhotoGallery({ photos, name }: Props) {
   if (!photos.length) {
     return (
       <div className="flex h-[50vh] items-center justify-center bg-[#111111]">
-        <span className="text-[#444]">Photo bientôt disponible</span>
+        <span className="text-[#888888]">Photo bientôt disponible</span>
       </div>
     );
   }

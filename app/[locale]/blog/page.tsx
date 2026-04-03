@@ -18,7 +18,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
   const posts = await client.fetch(BLOG_POSTS_QUERY);
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen bg-[#0A0A0A] pt-20">
       <div className="border-b border-[#222222] bg-[#111111] px-6 py-16">
         <div className="mx-auto max-w-7xl">
           <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">Blog</p>
@@ -46,7 +46,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     ) : (
-                      <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-[#444]">Image</div>
+                      <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-[#888888]">Image</div>
                     )}
                   </div>
                   <div className="p-6">

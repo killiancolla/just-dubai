@@ -44,7 +44,7 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
   }, [vehicles, search, selectedBrand, selectedFuel, sort]);
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen bg-[#0A0A0A] pt-20">
       {/* Header */}
       <div className="border-b border-[#222222] bg-[#111111] px-6 py-16">
         <div className="mx-auto max-w-7xl">
@@ -127,7 +127,7 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     ) : (
-                      <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-[#444] text-sm">
+                      <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-[#888888] text-sm">
                         Photo bientôt
                       </div>
                     )}

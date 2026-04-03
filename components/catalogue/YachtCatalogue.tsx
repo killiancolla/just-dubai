@@ -36,7 +36,7 @@ export default function YachtCatalogue({ yachts }: { yachts: Yacht[] }) {
   }, [yachts, sort, minLength, minCapacity]);
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen bg-[#0A0A0A] pt-20">
       <div className="border-b border-[#222222] bg-[#111111] px-6 py-16">
         <div className="mx-auto max-w-7xl">
           <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">Mer</p>
@@ -104,7 +104,7 @@ export default function YachtCatalogue({ yachts }: { yachts: Yacht[] }) {
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     ) : (
-                      <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-[#444] text-sm">
+                      <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-[#888888] text-sm">
                         Photo bientôt
                       </div>
                     )}

@@ -39,7 +39,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const settings = await client.fetch(SITE_SETTINGS_QUERY);
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen bg-[#0A0A0A] pt-20">
       <div className="border-b border-[#222222] bg-[#111111] px-6 py-16">
         <div className="mx-auto max-w-7xl">
           <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">À propos</p>

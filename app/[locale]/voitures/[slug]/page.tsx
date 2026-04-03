@@ -48,7 +48,7 @@ export default async function VehicleDetailPage({ params }: { params: Promise<{ 
   return (
     <>
       <JsonLd data={productSchema} />
-      <div className="min-h-screen pt-20">
+      <div className="min-h-screen bg-[#0A0A0A] pt-20">
         <PhotoGallery photos={photos} name={vehicle.name} />
 
         {/* Details */}

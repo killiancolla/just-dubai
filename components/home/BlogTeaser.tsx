@@ -56,7 +56,7 @@ export default function BlogTeaser({ posts }: { posts: Post[] }) {
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     ) : (
-                      <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-[#444] text-sm">Image</div>
+                      <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-[#888888] text-sm">Image</div>
                     )}
                   </div>
                   <div className="p-6">

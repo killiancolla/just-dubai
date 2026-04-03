@@ -40,7 +40,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
   return (
     <>
       <JsonLd data={articleSchema} />
-      <div className="min-h-screen pt-20">
+      <div className="min-h-screen bg-[#0A0A0A] pt-20">
         {post.coverImage && (
           <div className="relative h-[50vh] w-full overflow-hidden">
             <Image

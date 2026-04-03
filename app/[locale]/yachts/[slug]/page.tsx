@@ -47,7 +47,7 @@ export default async function YachtDetailPage({ params }: { params: Promise<{ lo
   return (
     <>
       <JsonLd data={productSchema} />
-      <div className="min-h-screen pt-20">
+      <div className="min-h-screen bg-[#0A0A0A] pt-20">
         <PhotoGallery photos={photos} name={yacht.name} />
 
         <div className="mx-auto max-w-5xl px-6 py-16">
