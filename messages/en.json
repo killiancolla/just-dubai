@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "cars": "Cars",
+    "yachts": "Yachts",
+    "services": "Services",
+    "loyalty": "Loyalty",
+    "blog": "Blog",
+    "about": "About us",
+    "book": "Book"
+  },
+  "hero": {
+    "tagline": "Exclusivity, at your pace",
+    "subtitle": "Luxury car and yacht rentals in Dubai",
+    "cta_cars": "Rent a car",
+    "cta_yachts": "Rent a yacht"
+  },
+  "home": {
+    "featured_cars": "Featured vehicles",
+    "featured_yachts": "Featured yachts",
+    "services_title": "Our services",
+    "services_subtitle": "An exceptional experience, from booking to key handover",
+    "loyalty_title": "Loyalty program",
+    "loyalty_subtitle": "Every rental brings you closer to the next privilege",
+    "loyalty_cta": "Discover the program",
+    "reassurance_title": "Why JustDubai?",
+    "blog_title": "News & guides"
+  },
+  "reassurance": {
+    "delivery": "24/7 Delivery",
+    "delivery_desc": "To your address, anywhere in Dubai",
+    "no_deposit": "No deposit option",
+    "no_deposit_desc": "No passport retention required",
+    "whatsapp": "Book in 2 minutes",
+    "whatsapp_desc": "Directly on WhatsApp"
+  },
+  "cars": {
+    "title": "Car catalogue",
+    "subtitle": "Discover our luxury vehicle fleet",
+    "filter_brand": "Brand",
+    "filter_model": "Model",
+    "filter_fuel": "Fuel",
+    "filter_deposit": "Deposit",
+    "filter_price": "Price / day",
+    "sort_price_asc": "Price ascending",
+    "sort_price_desc": "Price descending",
+    "sort_newest": "Newest",
+    "sort_popular": "Popularity",
+    "per_day": "/ day",
+    "no_deposit": "No deposit",
+    "book_cta": "Book this vehicle",
+    "whatsapp_msg": "Hello, I would like to book the"
+  },
+  "yachts": {
+    "title": "Yacht catalogue",
+    "subtitle": "Sail in exclusivity in Dubai waters",
+    "filter_length": "Length (m)",
+    "filter_capacity": "Capacity",
+    "filter_price": "Price",
+    "filter_deposit": "Deposit",
+    "half_day": "Half-day",
+    "full_day": "Full day",
+    "length_m": "m",
+    "capacity_persons": "persons",
+    "book_cta": "Book this yacht",
+    "whatsapp_msg": "Hello, I would like to book the yacht"
+  },
+  "services": {
+    "title": "Included services",
+    "subtitle": "Every detail designed for your comfort",
+    "delivery_title": "Delivery & pickup",
+    "delivery_desc": "24/7 — anywhere in Dubai — no extra charge",
+    "no_deposit_title": "No deposit",
+    "no_deposit_desc": "Option available without passport retention",
+    "whatsapp_title": "WhatsApp booking",
+    "whatsapp_desc": "Confirm your booking in 2 minutes on WhatsApp",
+    "maintenance_title": "Maintained fleet",
+    "maintenance_desc": "Vehicles and yachts regularly inspected and maintained"
+  },
+  "loyalty": {
+    "title": "Loyalty program",
+    "subtitle": "1€ spent = 1 point earned",
+    "how_title": "How does it work?",
+    "how_desc": "Book via WhatsApp, our team manually credits your points after each rental.",
+    "tiers_title": "Reward tiers",
+    "cta": "Start earning — Book on WhatsApp",
+    "points": "points",
+    "tier_1_reward": "100 extra km included",
+    "tier_2_reward": "300 km included",
+    "tier_3_reward": "24h package — 40% off",
+    "tier_4_reward": "48h package — 40% off"
+  },
+  "about": {
+    "title": "About us",
+    "subtitle": "JustDubai, your luxury partner in Dubai"
+  },
+  "blog": {
+    "title": "Blog & news",
+    "subtitle": "Guides, tips and Dubai news",
+    "read_more": "Read article",
+    "similar": "Similar articles"
+  },
+  "footer": {
+    "tagline": "Luxury rentals in Dubai",
+    "quick_links": "Quick links",
+    "contact": "Contact",
+    "follow": "Follow us",
+    "copyright": "© 2024 JustDubai. All rights reserved."
+  },
+  "whatsapp": {
+    "tooltip": "Book on WhatsApp",
+    "cta": "Book now",
+    "cta_title": "Reserve your experience in just a few minutes"
+  },
+  "common": {
+    "view_all": "View all",
+    "back": "Back",
+    "loading": "Loading..."
+  }
+}

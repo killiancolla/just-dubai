@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "cars": "Voitures",
+    "yachts": "Yachts",
+    "services": "Prestations",
+    "loyalty": "Fidélité",
+    "blog": "Blog",
+    "about": "Qui sommes-nous",
+    "book": "Réserver"
+  },
+  "hero": {
+    "tagline": "L'exclusivité, à votre rythme",
+    "subtitle": "Location de voitures et yachts de luxe à Dubaï",
+    "cta_cars": "Louer un véhicule",
+    "cta_yachts": "Louer un yacht"
+  },
+  "home": {
+    "featured_cars": "Véhicules vedettes",
+    "featured_yachts": "Yachts vedettes",
+    "services_title": "Nos prestations",
+    "services_subtitle": "Une expérience d'exception, de la réservation à la remise des clés",
+    "loyalty_title": "Programme de fidélité",
+    "loyalty_subtitle": "Chaque location vous rapproche du prochain privilège",
+    "loyalty_cta": "Découvrir le programme",
+    "reassurance_title": "Pourquoi JustDubai ?",
+    "blog_title": "Actualités & guides"
+  },
+  "reassurance": {
+    "delivery": "Livraison 24h/7j",
+    "delivery_desc": "À votre adresse, n'importe où à Dubaï",
+    "no_deposit": "Sans caution disponible",
+    "no_deposit_desc": "Option sans retenir le passeport",
+    "whatsapp": "Réservation en 2 minutes",
+    "whatsapp_desc": "Directement sur WhatsApp"
+  },
+  "cars": {
+    "title": "Catalogue voitures",
+    "subtitle": "Découvrez notre flotte de véhicules de luxe",
+    "filter_brand": "Marque",
+    "filter_model": "Modèle",
+    "filter_fuel": "Carburant",
+    "filter_deposit": "Caution",
+    "filter_price": "Prix / jour",
+    "sort_price_asc": "Prix croissant",
+    "sort_price_desc": "Prix décroissant",
+    "sort_newest": "Nouveautés",
+    "sort_popular": "Popularité",
+    "per_day": "/ jour",
+    "no_deposit": "Sans caution",
+    "book_cta": "Réserver ce véhicule",
+    "whatsapp_msg": "Bonjour, je souhaite réserver le"
+  },
+  "yachts": {
+    "title": "Catalogue yachts",
+    "subtitle": "Naviguez en toute exclusivité dans les eaux de Dubaï",
+    "filter_length": "Longueur (m)",
+    "filter_capacity": "Capacité",
+    "filter_price": "Prix",
+    "filter_deposit": "Caution",
+    "half_day": "Demi-journée",
+    "full_day": "Journée",
+    "length_m": "m",
+    "capacity_persons": "personnes",
+    "book_cta": "Réserver ce yacht",
+    "whatsapp_msg": "Bonjour, je souhaite réserver le yacht"
+  },
+  "services": {
+    "title": "Nos prestations incluses",
+    "subtitle": "Chaque détail pensé pour votre confort",
+    "delivery_title": "Livraison & reprise",
+    "delivery_desc": "24h/24 — 7j/7 — partout à Dubaï — sans frais additionnels",
+    "no_deposit_title": "Sans caution",
+    "no_deposit_desc": "Option disponible sans retenir le passeport",
+    "whatsapp_title": "Réservation WhatsApp",
+    "whatsapp_desc": "Confirmez votre réservation en 2 minutes sur WhatsApp",
+    "maintenance_title": "Flotte entretenue",
+    "maintenance_desc": "Véhicules et yachts régulièrement contrôlés et entretenus"
+  },
+  "loyalty": {
+    "title": "Programme de fidélité",
+    "subtitle": "1€ dépensé = 1 point cumulé",
+    "how_title": "Comment ça fonctionne ?",
+    "how_desc": "Réservez via WhatsApp, nos équipes créditent vos points manuellement après chaque location.",
+    "tiers_title": "Les paliers de récompenses",
+    "cta": "Commencer à cumuler — Réserver sur WhatsApp",
+    "points": "points",
+    "tier_1_reward": "100 km supplémentaires offerts",
+    "tier_2_reward": "300 km offerts",
+    "tier_3_reward": "Forfait 24h — 40% de réduction",
+    "tier_4_reward": "Forfait 48h — 40% de réduction"
+  },
+  "about": {
+    "title": "Qui sommes-nous ?",
+    "subtitle": "JustDubai, votre partenaire luxe à Dubaï"
+  },
+  "blog": {
+    "title": "Blog & actualités",
+    "subtitle": "Guides, conseils et actualités sur Dubaï",
+    "read_more": "Lire l'article",
+    "similar": "Articles similaires"
+  },
+  "footer": {
+    "tagline": "Location de luxe à Dubaï",
+    "quick_links": "Liens rapides",
+    "contact": "Contact",
+    "follow": "Nous suivre",
+    "copyright": "© 2024 JustDubai. Tous droits réservés."
+  },
+  "whatsapp": {
+    "tooltip": "Réserver sur WhatsApp",
+    "cta": "Réserver maintenant",
+    "cta_title": "Réservez votre expérience en quelques minutes"
+  },
+  "common": {
+    "view_all": "Voir tout",
+    "back": "Retour",
+    "loading": "Chargement..."
+  }
+}

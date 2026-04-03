@@ -1,0 +1,78 @@
+"use client";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { useTranslations, useLocale } from "next-intl";
+import { urlFor } from "@/sanity/lib/client";
+
+interface Post {
+  _id: string;
+  title: { fr?: string; en?: string; ru?: string };
+  slug: { current: string };
+  publishedAt: string;
+  coverImage: any;
+  excerpt: { fr?: string; en?: string; ru?: string };
+  categories: string[];
+}
+
+export default function BlogTeaser({ posts }: { posts: Post[] }) {
+  const t = useTranslations();
+  const locale = useLocale();
+
+  if (!posts?.length) return null;
+
+  return (
+    <section className="bg-[#111111] py-24 px-6">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-16 flex items-end justify-between">
+          <div>
+            <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">Blog</p>
+            <h2 className="font-display text-4xl font-light text-[#F5F5F0] md:text-5xl">{t("home.blog_title")}</h2>
+          </div>
+          <Link href={`/${locale}/blog`} className="hidden text-sm tracking-widest text-[#888888] hover:text-[#C9A84C] sm:block">
+            {t("common.view_all")} →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {posts.map((post, i) => {
+            const title = post.title?.[locale as keyof typeof post.title] ?? post.title?.fr ?? "";
+            const excerpt = post.excerpt?.[locale as keyof typeof post.excerpt] ?? post.excerpt?.fr ?? "";
+            return (
+              <motion.div
+                key={post._id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <Link href={`/${locale}/blog/${post.slug.current}`} className="luxury-card group block bg-[#0A0A0A]">
+                  <div className="relative aspect-video overflow-hidden">
+                    {post.coverImage ? (
+                      <Image
+                        src={urlFor(post.coverImage).width(600).height(340).url()}
+                        alt={title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-[#444] text-sm">Image</div>
+                    )}
+                  </div>
+                  <div className="p-6">
+                    {post.categories?.[0] && (
+                      <p className="mb-2 text-xs tracking-widest text-[#C9A84C] uppercase">{post.categories[0]}</p>
+                    )}
+                    <h3 className="font-display text-xl text-[#F5F5F0]">{title}</h3>
+                    {excerpt && <p className="mt-2 text-sm leading-relaxed text-[#888888] line-clamp-2">{excerpt}</p>}
+                    <p className="mt-4 text-xs tracking-widest text-[#C9A84C]">{t("blog.read_more")} →</p>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
