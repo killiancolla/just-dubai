@@ -43,6 +43,7 @@
     "filter_price": "Prix / jour",
     "sort_price_asc": "Prix croissant",
     "sort_price_desc": "Prix décroissant",
+    "sort_by": "Trier",
     "sort_newest": "Nouveautés",
     "sort_popular": "Popularité",
     "per_day": "/ jour",
@@ -52,6 +53,7 @@
   },
   "yachts": {
     "title": "Catalogue yachts",
+    "sort_by": "Trier",
     "subtitle": "Découvrez Dubaï depuis la mer à bord de nos yachts de luxe",
     "filter_length": "Longueur (m)",
     "filter_capacity": "Capacité",

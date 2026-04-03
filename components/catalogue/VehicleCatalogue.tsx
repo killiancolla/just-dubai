@@ -89,7 +89,8 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
             </select>
             <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-[#888888]" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 4l4 4 4-4"/></svg>
           </div>
-          <div className="relative">
+          <div className="relative flex items-center gap-2">
+            <span className="text-xs tracking-widest text-[#888888] uppercase">{t("sort_by")}</span>
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value)}

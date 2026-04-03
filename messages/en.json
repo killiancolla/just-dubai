@@ -43,6 +43,7 @@
     "filter_price": "Price / day",
     "sort_price_asc": "Price ascending",
     "sort_price_desc": "Price descending",
+    "sort_by": "Sort",
     "sort_newest": "Newest",
     "sort_popular": "Popularity",
     "per_day": "/ day",
@@ -52,6 +53,7 @@
   },
   "yachts": {
     "title": "Yacht catalogue",
+    "sort_by": "Sort",
     "subtitle": "Explore Dubai from the sea aboard our luxury yachts",
     "filter_length": "Length (m)",
     "filter_capacity": "Capacity",

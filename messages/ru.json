@@ -43,6 +43,7 @@
     "filter_price": "Цена / день",
     "sort_price_asc": "Цена по возрастанию",
     "sort_price_desc": "Цена по убыванию",
+    "sort_by": "Сортировка",
     "sort_newest": "Новинки",
     "sort_popular": "Популярность",
     "per_day": "/ день",
@@ -52,6 +53,7 @@
   },
   "yachts": {
     "title": "Каталог яхт",
+    "sort_by": "Сортировка",
     "subtitle": "Откройте Дубай с моря на борту наших роскошных яхт",
     "filter_length": "Длина (м)",
     "filter_capacity": "Вместимость",

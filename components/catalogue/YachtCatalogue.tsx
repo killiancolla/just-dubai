@@ -68,7 +68,8 @@ export default function YachtCatalogue({ yachts }: { yachts: Yacht[] }) {
               className="w-20 bg-[#111111] border border-[#222222] px-3 py-2 text-sm text-[#F5F5F0] outline-none focus:border-[#C9A84C]"
             />
           </div>
-          <div className="relative">
+          <div className="relative flex items-center gap-2">
+            <span className="text-xs tracking-widest text-[#888888] uppercase">{t("sort_by")}</span>
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value)}
