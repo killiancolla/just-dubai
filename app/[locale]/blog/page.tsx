@@ -29,7 +29,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
 
       <div className="mx-auto max-w-7xl px-6 py-16">
         {posts.length === 0 ? (
-          <p className="text-center text-[#888888]">Aucun article pour le moment.</p>
+          <p className="text-center text-[#888888]">{t("no_results")}</p>
         ) : (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post: any) => {

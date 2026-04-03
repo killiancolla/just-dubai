@@ -8,7 +8,7 @@ export default function WhatsAppCTA() {
     <section className="bg-[#C9A84C] py-16 px-6">
       <div className="mx-auto max-w-4xl text-center">
         <p className="mb-3 text-xs tracking-[0.4em] text-[#0A0A0A] uppercase">
-          Disponible 7j/7 · 24h/24
+          {t("availability")}
         </p>
         <h2 className="font-display mb-8 text-3xl font-light text-[#0A0A0A] md:text-4xl">
           {t("cta_title")}

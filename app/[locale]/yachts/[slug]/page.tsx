@@ -58,8 +58,8 @@ export default async function YachtDetailPage({ params }: { params: Promise<{ lo
               <div className="gold-separator my-8" />
               <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
                 {[
-                  { label: "Longueur", value: `${yacht.lengthMeters}m` },
-                  { label: "Capacité", value: `${yacht.capacity} pers.` },
+                  { label: t("spec_length"), value: `${yacht.lengthMeters}m` },
+                  { label: t("spec_capacity"), value: `${yacht.capacity} pers.` },
                 ].map((spec) => (
                   <div key={spec.label}>
                     <p className="text-xs tracking-widest text-[#888888] uppercase">{spec.label}</p>
@@ -70,7 +70,7 @@ export default async function YachtDetailPage({ params }: { params: Promise<{ lo
               {yacht.amenities?.length > 0 && (
                 <>
                   <div className="gold-separator my-8" />
-                  <p className="mb-4 text-xs tracking-widest text-[#888888] uppercase">Équipements</p>
+                  <p className="mb-4 text-xs tracking-widest text-[#888888] uppercase">{t("equipment")}</p>
                   <div className="flex flex-wrap gap-2">
                     {yacht.amenities.map((a: string) => (
                       <Badge key={a} variant="muted">{a}</Badge>
@@ -88,8 +88,8 @@ export default async function YachtDetailPage({ params }: { params: Promise<{ lo
 
             <div className="lg:col-span-1">
               <div className="sticky top-24 border border-[#222222] p-8">
-                <p className="text-xs tracking-widest text-[#888888] uppercase">Réservation</p>
-                <p className="font-display mt-2 text-xl text-[#C9A84C]">Sur devis</p>
+                <p className="text-xs tracking-widest text-[#888888] uppercase">{t("booking")}</p>
+                <p className="font-display mt-2 text-xl text-[#C9A84C]">{t("on_request")}</p>
                 <a
                   href={`https://wa.me/971581515981?text=${whatsappMsg}`}
                   target="_blank"

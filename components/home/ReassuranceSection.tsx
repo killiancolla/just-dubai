@@ -36,7 +36,7 @@ export default function ReassuranceSection() {
     <section className="bg-[#111111] py-24 px-6">
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center">
-          <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">Garanties</p>
+          <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("reassurance.label")}</p>
           <h2 className="font-display text-4xl font-light text-[#F5F5F0]">{t("home.reassurance_title")}</h2>
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">

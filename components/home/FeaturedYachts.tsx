@@ -24,7 +24,7 @@ export default function FeaturedYachts({ yachts }: { yachts: Yacht[] }) {
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 flex items-end justify-between">
           <div>
-            <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">Mer</p>
+            <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("yachts.label")}</p>
             <h2 className="font-display text-4xl font-light text-[#F5F5F0] md:text-5xl">
               {t("home.featured_yachts")}
             </h2>
@@ -63,7 +63,7 @@ export default function FeaturedYachts({ yachts }: { yachts: Yacht[] }) {
                   <p className="text-xs tracking-widest text-[#888888] uppercase">{yacht.lengthMeters}m · {yacht.capacity} pers.</p>
                   <h3 className="font-display mt-1 text-xl text-[#F5F5F0]">{yacht.name}</h3>
                   <div className="mt-4">
-                    <span className="text-xs text-[#C9A84C] tracking-widest uppercase">Sur devis</span>
+                    <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("yachts.on_request")}</span>
                   </div>
                 </div>
               </Link>

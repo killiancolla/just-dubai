@@ -19,7 +19,7 @@ export default async function FidelitePage() {
     <div className="min-h-screen bg-[#0A0A0A] pt-20">
       <div className="border-b border-[#222222] bg-[#111111] px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">Fidélité</p>
+          <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("label")}</p>
           <h1 className="font-display text-4xl font-light text-[#F5F5F0] md:text-5xl">{t("title")}</h1>
           <p className="mt-2 text-lg text-[#C9A84C]">{t("subtitle")}</p>
         </div>
@@ -29,23 +29,18 @@ export default async function FidelitePage() {
         {/* How it works */}
         <div className="mb-20 grid grid-cols-1 gap-12 lg:grid-cols-2">
           <div>
-            <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">Fonctionnement</p>
+            <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("how_label")}</p>
             <h2 className="font-display mb-6 text-3xl font-light text-[#F5F5F0]">{t("how_title")}</h2>
             <p className="text-lg leading-relaxed text-[#888888]">{t("how_desc")}</p>
             <div className="mt-8 border-l-2 border-[#C9A84C] pl-6">
-              <p className="font-display text-2xl text-[#C9A84C]">1€ = 1 point</p>
-              <p className="mt-1 text-sm text-[#888888]">Chaque euro dépensé en location</p>
+              <p className="font-display text-2xl text-[#C9A84C]">{t("ratio")}</p>
+              <p className="mt-1 text-sm text-[#888888]">{t("ratio_desc")}</p>
             </div>
           </div>
           <div className="border border-[#222222] p-8">
-            <p className="mb-4 text-xs tracking-widest text-[#888888] uppercase">Étapes</p>
+            <p className="mb-4 text-xs tracking-widest text-[#888888] uppercase">{t("steps_label")}</p>
             <ol className="space-y-4">
-              {[
-                "Réservez votre véhicule ou yacht via WhatsApp",
-                "Profitez de votre expérience JustDubai",
-                "Vos points sont crédités manuellement après la location",
-                "Atteignez un palier pour débloquer votre récompense",
-              ].map((step, i) => (
+              {([t("step_1"), t("step_2"), t("step_3"), t("step_4")] as string[]).map((step, i) => (
                 <li key={i} className="flex items-start gap-4">
                   <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-[#C9A84C] text-xs text-[#C9A84C]">
                     {i + 1}
@@ -59,7 +54,7 @@ export default async function FidelitePage() {
 
         {/* Tiers */}
         <div className="mb-16">
-          <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">Paliers</p>
+          <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("tiers_label")}</p>
           <h2 className="font-display mb-10 text-3xl font-light text-[#F5F5F0]">{t("tiers_title")}</h2>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -82,8 +77,8 @@ export default async function FidelitePage() {
 
         {/* CTA */}
         <div className="border border-[#C9A84C] p-12 text-center">
-          <p className="font-display mb-4 text-3xl font-light text-[#F5F5F0]">Commencez à cumuler dès maintenant</p>
-          <p className="mb-8 text-[#888888]">Chaque location vous rapproche du prochain privilège.</p>
+          <p className="font-display mb-4 text-3xl font-light text-[#F5F5F0]">{t("cta_title")}</p>
+          <p className="mb-8 text-[#888888]">{t("cta_desc")}</p>
           <a
             href="https://wa.me/971581515981"
             target="_blank"

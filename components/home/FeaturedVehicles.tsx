@@ -28,7 +28,7 @@ export default function FeaturedVehicles({ vehicles }: Props) {
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 flex items-end justify-between">
           <div>
-            <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">Flotte</p>
+            <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("cars.label")}</p>
             <h2 className="font-display text-4xl font-light text-[#1A1A1A] md:text-5xl">
               {t("home.featured_cars")}
             </h2>
@@ -70,7 +70,7 @@ export default function FeaturedVehicles({ vehicles }: Props) {
                   <p className="text-xs tracking-widest text-[#888888] uppercase">{vehicle.brand}</p>
                   <h3 className="font-display mt-1 text-xl text-[#1A1A1A]">{vehicle.name}</h3>
                   <div className="mt-4 flex items-center justify-between">
-                    <span className="text-xs text-[#C9A84C] tracking-widest uppercase">Sur devis</span>
+                    <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("cars.on_request")}</span>
                     <span className="text-xs text-[#888888]">{vehicle.year}</span>
                   </div>
                 </div>

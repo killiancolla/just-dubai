@@ -18,7 +18,7 @@ export default function LoyaltyTeaser() {
     <section className="bg-[#F5F0E8] py-24 px-6">
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center">
-          <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">Fidélité</p>
+          <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("label")}</p>
           <h2 className="font-display text-4xl font-light text-[#1A1A1A] md:text-5xl">{t("title")}</h2>
           <p className="mt-4 text-[#666666]">{t("subtitle")}</p>
         </div>

@@ -49,7 +49,7 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
       {/* Header */}
       <div className="border-b border-[#222222] bg-[#111111] px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">Flotte</p>
+          <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("label")}</p>
           <h1 className="font-display text-4xl font-light text-[#F5F5F0] md:text-5xl">{t("title")}</h1>
           <p className="mt-2 text-[#888888]">{t("subtitle")}</p>
         </div>
@@ -83,9 +83,9 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
               className="appearance-none bg-[#111111] border border-[#222222] pl-4 pr-10 py-2 text-sm text-[#F5F5F0] outline-none focus:border-[#C9A84C]"
             >
               <option value="">{t("filter_fuel")}</option>
-              <option value="essence">Essence</option>
-              <option value="hybride">Hybride</option>
-              <option value="electrique">Électrique</option>
+              <option value="essence">{t("fuel_essence")}</option>
+              <option value="hybride">{t("fuel_hybrid")}</option>
+              <option value="electrique">{t("fuel_electric")}</option>
             </select>
             <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-[#888888]" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 4l4 4 4-4"/></svg>
           </div>
@@ -108,7 +108,7 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
 
         {/* Grid */}
         {filtered.length === 0 ? (
-          <div className="py-24 text-center text-[#888888]">Aucun véhicule trouvé</div>
+          <div className="py-24 text-center text-[#888888]">{t("no_results")}</div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filtered.map((vehicle, i) => (
@@ -141,7 +141,7 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
                       {vehicle.fuel && (
                         <span className="text-xs text-[#888888] capitalize">{vehicle.fuel}</span>
                       )}
-                      <span className="text-xs text-[#C9A84C] tracking-widest uppercase">Sur devis</span>
+                      <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("on_request")}</span>
                     </div>
                   </div>
                 </Link>

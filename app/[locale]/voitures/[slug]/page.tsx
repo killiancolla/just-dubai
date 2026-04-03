@@ -60,12 +60,12 @@ export default async function VehicleDetailPage({ params }: { params: Promise<{ 
               <div className="gold-separator my-8" />
               <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
                 {[
-                  { label: "Marque", value: vehicle.brand },
-                  { label: "Modèle", value: vehicle.model },
-                  { label: "Année", value: vehicle.year },
-                  { label: "Carburant", value: vehicle.fuel },
-                  { label: "Transmission", value: vehicle.transmission },
-                  { label: "Places", value: vehicle.seats },
+                  { label: t("spec_brand"), value: vehicle.brand },
+                  { label: t("spec_model"), value: vehicle.model },
+                  { label: t("spec_year"), value: vehicle.year },
+                  { label: t("spec_fuel"), value: vehicle.fuel },
+                  { label: t("spec_transmission"), value: vehicle.transmission },
+                  { label: t("spec_seats"), value: vehicle.seats },
                 ].map((spec) => (
                   <div key={spec.label}>
                     <p className="text-xs tracking-widest text-[#888888] uppercase">{spec.label}</p>
@@ -84,8 +84,8 @@ export default async function VehicleDetailPage({ params }: { params: Promise<{ 
             {/* Booking sidebar */}
             <div className="lg:col-span-1">
               <div className="sticky top-24 border border-[#222222] p-8">
-                <p className="text-xs tracking-widest text-[#888888] uppercase">Réservation</p>
-                <p className="font-display mt-2 text-xl text-[#C9A84C]">Sur devis</p>
+                <p className="text-xs tracking-widest text-[#888888] uppercase">{t("booking")}</p>
+                <p className="font-display mt-2 text-xl text-[#C9A84C]">{t("on_request")}</p>
                 <a
                   href={`https://wa.me/971581515981?text=${whatsappMsg}`}
                   target="_blank"

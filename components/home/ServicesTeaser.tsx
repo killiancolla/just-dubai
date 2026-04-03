@@ -71,7 +71,7 @@ export default function ServicesTeaser() {
             href={`/${locale}/prestations`}
             className="inline-flex items-center gap-2 border border-[#C9A84C] px-8 py-3 text-sm tracking-widest text-[#C9A84C] transition-colors hover:bg-[#C9A84C] hover:text-[#0A0A0A]"
           >
-            En savoir plus →
+            {t("home.services_cta")}
           </Link>
         </div>
       </div>
