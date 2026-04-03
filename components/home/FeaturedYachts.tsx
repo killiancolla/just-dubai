@@ -70,6 +70,12 @@ export default function FeaturedYachts({ yachts }: { yachts: Yacht[] }) {
             </motion.div>
           ))}
         </div>
+
+        <div className="mt-8 text-center sm:hidden">
+          <Link href={`/${locale}/yachts`} className="text-sm tracking-widest text-[#888888] hover:text-[#C9A84C]">
+            {t("common.view_all")} →
+          </Link>
+        </div>
       </div>
     </section>
   );

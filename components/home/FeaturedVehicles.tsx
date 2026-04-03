@@ -80,10 +80,11 @@ export default function FeaturedVehicles({ vehicles }: Props) {
         </div>
 
         <div className="mt-8 text-center sm:hidden">
-          <Link href={`/${locale}/voitures`} className="text-sm tracking-widest text-[#C9A84C]">
+          <Link href={`/${locale}/voitures`} className="text-sm tracking-widest text-[#666666] hover:text-[#C9A84C]">
             {t("common.view_all")} →
           </Link>
         </div>
+
       </div>
     </section>
   );

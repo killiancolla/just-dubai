@@ -1,12 +1,16 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringWrapperRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    setVisible(true);
+
     let ringX = -100, ringY = -100;
     let mouseX = -100, mouseY = -100;
     let isHovering = false;
@@ -63,6 +67,8 @@ export default function CustomCursor() {
       cancelAnimationFrame(rafId);
     };
   }, []);
+
+  if (!visible) return null;
 
   return (
     <>
