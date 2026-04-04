@@ -6,6 +6,7 @@ import Badge from "@/components/ui/Badge";
 import PhotoGallery from "@/components/catalogue/PhotoGallery";
 import type { Metadata } from "next";
 import { FaWhatsapp } from "react-icons/fa";
+import PriceDisplay from "@/components/ui/PriceDisplay";
 
 export const revalidate = 60;
 
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function YachtDetailPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
   const t = await getTranslations("yachts");
+  const tCommon = await getTranslations("common");
   const yacht = await client.fetch(YACHT_BY_SLUG_QUERY, { slug });
   if (!yacht) notFound();
 
@@ -90,7 +92,11 @@ export default async function YachtDetailPage({ params }: { params: Promise<{ lo
             <div className="lg:col-span-1">
               <div className="sticky top-24 border border-[#222222] p-8">
                 <p className="text-xs tracking-widest text-[#888888] uppercase">{t("booking")}</p>
-                <p className="font-display mt-2 text-xl text-[#C9A84C]">{t("on_request")}</p>
+                {yacht.pricePerDay ? (
+                  <p className="font-display mt-2 text-xl text-[#C9A84C]">{tCommon("starting_from")} <PriceDisplay aed={yacht.pricePerDay} /> {t("per_day")}</p>
+                ) : (
+                  <p className="font-display mt-2 text-xl text-[#C9A84C]">{t("on_request")}</p>
+                )}
                 <a
                   href={`https://wa.me/971581515981?text=${whatsappMsg}`}
                   target="_blank"

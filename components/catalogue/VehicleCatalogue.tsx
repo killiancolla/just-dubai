@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/client";
 import Badge from "@/components/ui/Badge";
 import { ChevronDown } from "lucide-react";
+import PriceDisplay from "@/components/ui/PriceDisplay";
 
 interface Vehicle {
   _id: string;
@@ -16,6 +17,7 @@ interface Vehicle {
   model: string;
   year: number;
   fuel: string;
+  pricePerDay?: number;
   mainPhoto: any;
 }
 
@@ -142,7 +144,11 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
                       {vehicle.fuel && (
                         <span className="text-xs text-[#888888] capitalize">{vehicle.fuel}</span>
                       )}
-                      <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("on_request")}</span>
+                      {vehicle.pricePerDay ? (
+                        <span className="text-xs text-[#C9A84C]">{tCommon("starting_from")} <PriceDisplay aed={vehicle.pricePerDay} /> {t("per_day")}</span>
+                      ) : (
+                        <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("on_request")}</span>
+                      )}
                     </div>
                   </div>
                 </Link>

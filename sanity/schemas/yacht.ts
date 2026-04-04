@@ -9,6 +9,7 @@ export default defineType({
     defineField({ name: "slug", title: "Slug", type: "slug", options: { source: "name" }, validation: (r) => r.required() }),
     defineField({ name: "lengthMeters", title: "Longueur (m)", type: "number" }),
     defineField({ name: "capacity", title: "Capacité (personnes)", type: "number" }),
+    defineField({ name: "pricePerDay", title: "Prix par jour (AED)", type: "number" }),
     defineField({ name: "featured", title: "Mis en avant", type: "boolean", initialValue: false }),
     defineField({ name: "amenities", title: "Équipements", type: "array", of: [{ type: "string" }], options: { layout: "tags" } }),
     defineField({ name: "photos", title: "Photos", type: "array", of: [{ type: "image", options: { hotspot: true } }] }),

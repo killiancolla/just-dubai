@@ -23,6 +23,7 @@ export default defineType({
       options: { list: ["automatique", "manuelle"] },
     }),
     defineField({ name: "seats", title: "Nombre de places", type: "number" }),
+    defineField({ name: "pricePerDay", title: "Prix par jour (AED)", type: "number" }),
     defineField({ name: "featured", title: "Mis en avant", type: "boolean", initialValue: false }),
     defineField({ name: "photos", title: "Photos", type: "array", of: [{ type: "image", options: { hotspot: true } }] }),
     defineField({

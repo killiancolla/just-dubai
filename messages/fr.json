@@ -82,6 +82,7 @@
     "full_day": "Journée",
     "length_m": "m",
     "capacity_persons": "personnes",
+    "per_day": "/ jour",
     "on_request": "Sur devis",
     "booking": "Réservation",
     "spec_length": "Longueur",
@@ -183,10 +184,19 @@
     "cta": "Réserver maintenant",
     "cta_title": "Réservez votre expérience en quelques minutes"
   },
+  "region": {
+    "devise": "Devise",
+    "langue": "Langue",
+    "aed": "Dirham (AED)",
+    "eur": "Euro (€)",
+    "usd": "Dollar ($)",
+    "rub": "Rouble (₽)"
+  },
   "common": {
     "view_all": "Voir tout",
     "back": "Retour",
     "loading": "Chargement...",
-    "photo_soon": "Photo bientôt disponible"
+    "photo_soon": "Photo bientôt disponible",
+    "starting_from": "À partir de"
   }
 }

@@ -29,6 +29,7 @@ export const VEHICLES_QUERY = `*[_type == "vehicle"] | order(name asc) {
   fuel,
   transmission,
   seats,
+  pricePerDay,
   featured,
   "mainPhoto": photos[0],
   "description": description
@@ -41,6 +42,7 @@ export const FEATURED_VEHICLES_QUERY = `*[_type == "vehicle" && featured == true
   brand,
   model,
   year,
+  pricePerDay,
   "mainPhoto": photos[0]
 }`;
 
@@ -54,6 +56,7 @@ export const VEHICLE_BY_SLUG_QUERY = `*[_type == "vehicle" && slug.current == $s
   fuel,
   transmission,
   seats,
+  pricePerDay,
   featured,
   photos,
   description
@@ -65,6 +68,7 @@ export const YACHTS_QUERY = `*[_type == "yacht"] | order(name asc) {
   slug,
   lengthMeters,
   capacity,
+  pricePerDay,
   featured,
   amenities,
   "mainPhoto": photos[0],
@@ -77,6 +81,7 @@ export const FEATURED_YACHTS_QUERY = `*[_type == "yacht" && featured == true][0.
   slug,
   lengthMeters,
   capacity,
+  pricePerDay,
   "mainPhoto": photos[0]
 }`;
 
@@ -86,6 +91,7 @@ export const YACHT_BY_SLUG_QUERY = `*[_type == "yacht" && slug.current == $slug]
   slug,
   lengthMeters,
   capacity,
+  pricePerDay,
   featured,
   amenities,
   photos,

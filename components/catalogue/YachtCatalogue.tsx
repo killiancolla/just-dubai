@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/client";
 import Badge from "@/components/ui/Badge";
 import { ChevronDown } from "lucide-react";
+import PriceDisplay from "@/components/ui/PriceDisplay";
 
 interface Yacht {
   _id: string;
@@ -14,6 +15,7 @@ interface Yacht {
   slug: { current: string };
   lengthMeters: number;
   capacity: number;
+  pricePerDay?: number;
   mainPhoto: any;
 }
 
@@ -118,7 +120,11 @@ export default function YachtCatalogue({ yachts }: { yachts: Yacht[] }) {
                     </p>
                     <h2 className="font-display mt-1 text-xl text-[#F5F5F0]">{yacht.name}</h2>
                     <div className="mt-4">
-                      <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("on_request")}</span>
+                      {yacht.pricePerDay ? (
+                        <span className="text-xs text-[#C9A84C]">{tCommon("starting_from")} <PriceDisplay aed={yacht.pricePerDay} /> {t("per_day")}</span>
+                      ) : (
+                        <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("on_request")}</span>
+                      )}
                     </div>
                   </div>
                 </Link>

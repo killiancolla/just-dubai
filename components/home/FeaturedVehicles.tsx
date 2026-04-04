@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { urlFor } from "@/sanity/lib/client";
+import PriceDisplay from "@/components/ui/PriceDisplay";
 
 interface Vehicle {
   _id: string;
@@ -12,6 +13,7 @@ interface Vehicle {
   brand: string;
   model: string;
   year: number;
+  pricePerDay?: number;
   mainPhoto: any;
 }
 
@@ -70,7 +72,11 @@ export default function FeaturedVehicles({ vehicles }: Props) {
                   <p className="text-xs tracking-widest text-[#888888] uppercase">{vehicle.brand}</p>
                   <h3 className="font-display mt-1 text-xl text-[#1A1A1A]">{vehicle.name}</h3>
                   <div className="mt-4 flex items-center justify-between">
-                    <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("cars.on_request")}</span>
+                    {vehicle.pricePerDay ? (
+                      <span className="text-xs text-[#C9A84C]">{t("common.starting_from")} <PriceDisplay aed={vehicle.pricePerDay} /> {t("cars.per_day")}</span>
+                    ) : (
+                      <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("cars.on_request")}</span>
+                    )}
                     <span className="text-xs text-[#888888]">{vehicle.year}</span>
                   </div>
                 </div>

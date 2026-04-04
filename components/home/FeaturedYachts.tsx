@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { urlFor } from "@/sanity/lib/client";
+import PriceDisplay from "@/components/ui/PriceDisplay";
 import Badge from "@/components/ui/Badge";
 
 interface Yacht {
@@ -12,6 +13,7 @@ interface Yacht {
   slug: { current: string };
   lengthMeters: number;
   capacity: number;
+  pricePerDay?: number;
   mainPhoto: any;
 }
 
@@ -63,7 +65,11 @@ export default function FeaturedYachts({ yachts }: { yachts: Yacht[] }) {
                   <p className="text-xs tracking-widest text-[#888888] uppercase">{yacht.lengthMeters}m · {yacht.capacity} pers.</p>
                   <h3 className="font-display mt-1 text-xl text-[#F5F5F0]">{yacht.name}</h3>
                   <div className="mt-4">
-                    <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("yachts.on_request")}</span>
+                    {yacht.pricePerDay ? (
+                      <span className="text-xs text-[#C9A84C]">{t("common.starting_from")} <PriceDisplay aed={yacht.pricePerDay} /> {t("yachts.per_day")}</span>
+                    ) : (
+                      <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("yachts.on_request")}</span>
+                    )}
                   </div>
                 </div>
               </Link>

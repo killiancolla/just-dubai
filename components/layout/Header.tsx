@@ -6,20 +6,34 @@ import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
+import { ChevronDown } from "lucide-react";
+import RegionDropdown from "@/components/ui/RegionDropdown";
+import { useCurrency, type Currency } from "@/contexts/CurrencyContext";
+
+const CURRENCIES: { code: Currency; label: string }[] = [
+  { code: "AED", label: "Dirham (AED)" },
+  { code: "EUR", label: "Euro (€)" },
+  { code: "USD", label: "Dollar ($)" },
+  { code: "RUB", label: "Rouble (₽)" },
+];
 
 const locales = [
-  { code: "fr", label: "FR" },
-  { code: "en", label: "EN" },
-  { code: "ru", label: "RU" },
+  { code: "fr", label: "Français" },
+  { code: "en", label: "English" },
+  { code: "ru", label: "Русский" },
 ];
 
 export default function Header() {
   const t = useTranslations("nav");
+  const tRegion = useTranslations("region");
   const locale = useLocale();
   const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { currency, setCurrency } = useCurrency();
 
-  // Strip locale prefix to get the path segment
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [deviseOpen, setDeviseOpen] = useState(false);
+  const [langueOpen, setLangueOpen] = useState(false);
+
   const pathWithoutLocale = pathname.replace(/^\/(fr|en|ru)/, "") || "/";
 
   function getLocalizedPath(newLocale: string) {
@@ -58,21 +72,8 @@ export default function Header() {
 
         {/* Right side */}
         <div className="flex items-center gap-4">
-          {/* Language switcher */}
-          <div className="hidden items-center gap-2 lg:flex">
-            {locales.map((loc) => (
-              <Link
-                key={loc.code}
-                href={getLocalizedPath(loc.code)}
-                className={`text-xs tracking-widest transition-colors ${
-                  locale === loc.code
-                    ? "text-[#C9A84C]"
-                    : "text-[#888888] hover:text-[#F5F5F0]"
-                }`}
-              >
-                {loc.label}
-              </Link>
-            ))}
+          <div className="hidden lg:block">
+            <RegionDropdown />
           </div>
 
           {/* WhatsApp CTA */}
@@ -119,17 +120,74 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-              <div className="mt-2 flex gap-4 border-t border-[#222222] pt-4">
-                {locales.map((loc) => (
-                  <Link
-                    key={loc.code}
-                    href={getLocalizedPath(loc.code)}
-                    onClick={() => setMenuOpen(false)}
-                    className={`text-xs tracking-widest ${locale === loc.code ? "text-[#C9A84C]" : "text-[#888888]"}`}
-                  >
-                    {loc.label}
-                  </Link>
-                ))}
+
+              <div className="border-t border-[#222222] pt-4">
+                <button
+                  onClick={() => setDeviseOpen((v) => !v)}
+                  className="flex w-full items-center justify-between text-sm tracking-widest text-[#888888]"
+                >
+                  <span>{tRegion("devise")}</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${deviseOpen ? "rotate-180" : ""}`} strokeWidth={1.5} />
+                </button>
+                <AnimatePresence>
+                  {deviseOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-3 flex flex-col gap-3 pl-2">
+                        {CURRENCIES.map((c) => (
+                          <button
+                            key={c.code}
+                            onClick={() => { setCurrency(c.code); setDeviseOpen(false); }}
+                            className={`text-left text-sm transition-colors ${
+                              currency === c.code ? "text-[#C9A84C]" : "text-[#555555] hover:text-[#888888]"
+                            }`}
+                          >
+                            {tRegion(c.code.toLowerCase() as "aed" | "eur" | "usd" | "rub")}
+                          </button>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <div className="border-t border-[#222222] pt-4">
+                <button
+                  onClick={() => setLangueOpen((v) => !v)}
+                  className="flex w-full items-center justify-between text-sm tracking-widest text-[#888888]"
+                >
+                  <span>{tRegion("langue")}</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${langueOpen ? "rotate-180" : ""}`} strokeWidth={1.5} />
+                </button>
+                <AnimatePresence>
+                  {langueOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-3 flex flex-col gap-3 pl-2">
+                        {locales.map((loc) => (
+                          <Link
+                            key={loc.code}
+                            href={getLocalizedPath(loc.code)}
+                            onClick={() => { setMenuOpen(false); setLangueOpen(false); }}
+                            className={`text-sm transition-colors ${
+                              locale === loc.code ? "text-[#C9A84C]" : "text-[#555555] hover:text-[#888888]"
+                            }`}
+                          >
+                            {loc.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </motion.div>

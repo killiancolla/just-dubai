@@ -82,6 +82,7 @@
     "full_day": "Full day",
     "length_m": "m",
     "capacity_persons": "persons",
+    "per_day": "/ day",
     "on_request": "On request",
     "booking": "Booking",
     "spec_length": "Length",
@@ -183,10 +184,19 @@
     "cta": "Book now",
     "cta_title": "Reserve your experience in just a few minutes"
   },
+  "region": {
+    "devise": "Currency",
+    "langue": "Language",
+    "aed": "Dirham (AED)",
+    "eur": "Euro (€)",
+    "usd": "Dollar ($)",
+    "rub": "Ruble (₽)"
+  },
   "common": {
     "view_all": "View all",
     "back": "Back",
     "loading": "Loading...",
-    "photo_soon": "Photo coming soon"
+    "photo_soon": "Photo coming soon",
+    "starting_from": "From"
   }
 }
