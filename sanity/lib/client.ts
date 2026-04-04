@@ -35,7 +35,7 @@ export const VEHICLES_QUERY = `*[_type == "vehicle"] | order(name asc) {
   "description": description
 }`;
 
-export const FEATURED_VEHICLES_QUERY = `*[_type == "vehicle" && featured == true][0...4] {
+export const FEATURED_VEHICLES_QUERY = `*[_type == "vehicle" && featured == true] {
   _id,
   name,
   slug,
@@ -75,7 +75,7 @@ export const YACHTS_QUERY = `*[_type == "yacht"] | order(name asc) {
   description
 }`;
 
-export const FEATURED_YACHTS_QUERY = `*[_type == "yacht" && featured == true][0...4] {
+export const FEATURED_YACHTS_QUERY = `*[_type == "yacht" && featured == true] {
   _id,
   name,
   slug,
