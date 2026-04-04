@@ -9,8 +9,11 @@
     "book": "Book"
   },
   "hero": {
-    "tagline": "Exclusivity, at your pace",
-    "subtitle": "Luxury car and yacht rentals in Dubai",
+    "tagline": "Luxury car and yacht rentals in Dubai",
+    "subtitle": "VIP Service — 2-min WhatsApp booking — 24/7 delivery across Dubai",
+    "badge_delivery": "24/7 Delivery",
+    "badge_no_deposit": "No deposit option",
+    "badge_whatsapp": "Instant WhatsApp reply",
     "cta_cars": "Rent a car",
     "cta_yachts": "Rent a yacht"
   },

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/client";
 import Badge from "@/components/ui/Badge";
+import { ChevronDown } from "lucide-react";
 
 interface Yacht {
   _id: string;
@@ -78,7 +79,7 @@ export default function YachtCatalogue({ yachts }: { yachts: Yacht[] }) {
               <option value="alpha">A → Z</option>
               <option value="length-desc">{t("sort_largest")}</option>
             </select>
-            <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-[#888888]" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 4l4 4 4-4"/></svg>
+            <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-[#888888]" strokeWidth={1.5} />
           </div>
         </div>
 

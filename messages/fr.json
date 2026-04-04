@@ -9,8 +9,11 @@
     "book": "Réserver"
   },
   "hero": {
-    "tagline": "L'exclusivité, à votre rythme",
-    "subtitle": "Location de voitures et yachts de luxe à Dubaï",
+    "tagline": "Location de voitures et yachts de luxe à Dubaï",
+    "subtitle": "Service VIP — Réservation en 2 min sur WhatsApp — Livraison 24/7 partout à Dubaï",
+    "badge_delivery": "Livraison 24/7",
+    "badge_no_deposit": "Option sans caution",
+    "badge_whatsapp": "Réponse WhatsApp immédiate",
     "cta_cars": "Louer un véhicule",
     "cta_yachts": "Louer un yacht"
   },

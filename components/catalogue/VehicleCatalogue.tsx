@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/client";
 import Badge from "@/components/ui/Badge";
+import { ChevronDown } from "lucide-react";
 
 interface Vehicle {
   _id: string;
@@ -74,7 +75,7 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
               <option value="">{t("filter_brand")}</option>
               {brands.map((b) => <option key={b} value={b}>{b}</option>)}
             </select>
-            <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-[#888888]" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 4l4 4 4-4"/></svg>
+            <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-[#888888]" strokeWidth={1.5} />
           </div>
           <div className="relative">
             <select
@@ -87,7 +88,7 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
               <option value="hybride">{t("fuel_hybrid")}</option>
               <option value="electrique">{t("fuel_electric")}</option>
             </select>
-            <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-[#888888]" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 4l4 4 4-4"/></svg>
+            <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-[#888888]" strokeWidth={1.5} />
           </div>
           <div className="relative flex items-center gap-2">
             <span className="text-xs tracking-widest text-[#888888] uppercase">{t("sort_by")}</span>
@@ -99,7 +100,7 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
               <option value="newest">{t("sort_newest")}</option>
               <option value="alpha">A → Z</option>
             </select>
-            <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-[#888888]" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 4l4 4 4-4"/></svg>
+            <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-[#888888]" strokeWidth={1.5} />
           </div>
         </div>
 
