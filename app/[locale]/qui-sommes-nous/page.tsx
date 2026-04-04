@@ -17,6 +17,13 @@ const valueKeys = [
   { titleKey: "value_4_title", descKey: "value_4_desc", icon: "◇" },
 ];
 
+const teamMembers = [
+  { titleKey: "team_ops_title", descKey: "team_ops_desc", icon: "⚙" },
+  { titleKey: "team_social_title", descKey: "team_social_desc", icon: "◈" },
+  { titleKey: "team_car_title", descKey: "team_car_desc", icon: "◇" },
+  { titleKey: "team_yacht_title", descKey: "team_yacht_desc", icon: "⛵" },
+] as const;
+
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations("about");
@@ -44,6 +51,23 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           >
             {t("cta")}
           </a>
+        </div>
+
+        <div className="gold-separator my-20" />
+
+        <div className="mb-4">
+          <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("team_title")}</p>
+          <p className="text-[#888888]">{t("team_subtitle")}</p>
+        </div>
+
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {teamMembers.map((m) => (
+            <div key={m.titleKey} className="border border-[#C9A84C]/20 bg-[#111111] p-8">
+              <div className="mb-4 text-2xl text-[#C9A84C]">{m.icon}</div>
+              <h3 className="font-display mb-3 text-lg text-[#F5F5F0]">{t(m.titleKey)}</h3>
+              <p className="text-sm leading-relaxed text-[#888888]">{t(m.descKey)}</p>
+            </div>
+          ))}
         </div>
 
         <div className="gold-separator my-20" />
