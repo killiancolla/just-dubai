@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { client, urlFor, FEATURED_VEHICLES_QUERY, FEATURED_YACHTS_QUERY } from "@/sanity/lib/client";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("club");
@@ -10,27 +9,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export const revalidate = 60;
 
-type SanityPhoto = { asset: { _ref: string } };
-type FeaturedItem = { _id: string; mainPhoto: SanityPhoto | null };
-
-async function getHeroImages() {
-  const [vehicles, yachts] = await Promise.all([
-    client.fetch<FeaturedItem[]>(FEATURED_VEHICLES_QUERY),
-    client.fetch<FeaturedItem[]>(FEATURED_YACHTS_QUERY),
-  ]);
-  return {
-    carPhoto: vehicles?.[0]?.mainPhoto ?? null,
-    yachtPhoto: yachts?.[0]?.mainPhoto ?? null,
-  };
-}
-
 const SILVER_COLOR = "#A8A8A8";
 const GOLD_COLOR = "#C9A84C";
 const PLATINUM_COLOR = "#E8D08A";
 
 export default async function ClubPage() {
   const t = await getTranslations("club");
-  const { carPhoto, yachtPhoto } = await getHeroImages();
 
   const tiers = [
     {
@@ -70,31 +54,23 @@ export default async function ClubPage() {
         {/* Split background images */}
         <div className="absolute inset-0 grid grid-cols-2">
           <div className="relative overflow-hidden">
-            {carPhoto ? (
-              <Image
-                src={urlFor(carPhoto).width(900).height(1200).fit("crop").url()}
-                alt="Just Dubaï Club — voiture"
-                fill
-                className="object-cover brightness-[0.45]"
-                priority
-              />
-            ) : (
-              <div className="h-full bg-[#111111]" />
-            )}
+            <Image
+              src="/club/dubai-left.jpg"
+              alt="Dubaï — skyline"
+              fill
+              className="object-cover brightness-75"
+              priority
+            />
             <div className="absolute inset-y-0 right-0 w-2/3 bg-gradient-to-r from-transparent to-[#0A0A0A]" />
           </div>
           <div className="relative overflow-hidden">
-            {yachtPhoto ? (
-              <Image
-                src={urlFor(yachtPhoto).width(900).height(1200).fit("crop").url()}
-                alt="Just Dubaï Club — yacht"
-                fill
-                className="object-cover brightness-[0.45]"
-                priority
-              />
-            ) : (
-              <div className="h-full bg-[#0D0D0D]" />
-            )}
+            <Image
+              src="/club/dubai-right.jpg"
+              alt="Dubaï — waterfront"
+              fill
+              className="object-cover brightness-75"
+              priority
+            />
             <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-l from-transparent to-[#0A0A0A]" />
           </div>
         </div>
