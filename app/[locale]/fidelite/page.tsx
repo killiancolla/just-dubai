@@ -194,7 +194,7 @@ export default async function ClubPage() {
                     {t("yachts_perks")}
                   </p>
                   <ul className="space-y-2">
-                    {tier.yachtPerks.map((perk, i) => (
+                    {tier.yachtPerks.filter(Boolean).map((perk, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-[#777777]">
                         <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-[#333333]" />
                         {perk}
