@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { Globe } from "lucide-react";
+import { Banknote } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useCurrency, type Currency } from "@/contexts/CurrencyContext";
@@ -47,7 +47,7 @@ export default function RegionDropdown() {
           }`}
         aria-label="Région et devise"
       >
-        <Globe className="h-4 w-4" strokeWidth={1.5} />
+        <Banknote className="h-4 w-4" strokeWidth={1.5} />
         <span className="text-xs tracking-widest">{currency}</span>
       </button>
 

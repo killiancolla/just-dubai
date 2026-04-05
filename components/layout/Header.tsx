@@ -7,7 +7,8 @@ import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
 import { ChevronDown } from "lucide-react";
-import RegionDropdown from "@/components/ui/RegionDropdown";
+import CurrencyDropdown from "@/components/ui/CurrencyDropdown";
+import LanguageDropdown from "@/components/ui/LanguageDropdown";
 import { useCurrency, type Currency } from "@/contexts/CurrencyContext";
 
 const CURRENCIES: { code: Currency; label: string }[] = [
@@ -72,8 +73,9 @@ export default function Header() {
 
         {/* Right side */}
         <div className="flex items-center gap-4">
-          <div className="hidden lg:block">
-            <RegionDropdown />
+          <div className="hidden items-center gap-4 lg:flex">
+            <CurrencyDropdown />
+            <LanguageDropdown />
           </div>
 
           {/* WhatsApp CTA */}
