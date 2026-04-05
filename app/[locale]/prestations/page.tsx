@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
-import { Truck, BadgeCheck, MessageCircle, Wrench } from "lucide-react";
+import Image from "next/image";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   return { title: "Prestations incluses — JustDubai" };
@@ -12,28 +12,28 @@ const services = [
     titleKey: "delivery_title",
     descKey: "delivery_desc",
     detailKey: "delivery_detail",
-    icon: <Truck className="h-12 w-12" strokeWidth={0.7} />,
+    image: "/services/delivery.jpg",
   },
   {
     key: "no_deposit",
     titleKey: "no_deposit_title",
     descKey: "no_deposit_desc",
     detailKey: "no_deposit_detail",
-    icon: <BadgeCheck className="h-12 w-12" strokeWidth={0.7} />,
+    image: "/services/no-deposit.jpg",
   },
   {
     key: "whatsapp",
     titleKey: "whatsapp_title",
     descKey: "whatsapp_desc",
     detailKey: "whatsapp_detail",
-    icon: <MessageCircle className="h-12 w-12" strokeWidth={0.7} />,
+    image: "/services/whatsapp.jpg",
   },
   {
     key: "maintenance",
     titleKey: "maintenance_title",
     descKey: "maintenance_desc",
     detailKey: "maintenance_detail",
-    icon: <Wrench className="h-12 w-12" strokeWidth={0.7} />,
+    image: "/services/maintenance.jpg",
   },
 ];
 
@@ -57,9 +57,14 @@ export default async function PrestationsPage({ params }: { params: Promise<{ lo
               key={s.key}
               className={`flex flex-col gap-10 lg:flex-row ${i % 2 === 1 ? "lg:flex-row-reverse" : ""} items-center`}
             >
-              <div className="flex-1 border border-[#222222] p-12 text-center">
-                <div className="mb-6 flex justify-center text-[#C9A84C]">{s.icon}</div>
-                <p className="text-xs tracking-widest text-[#888888] uppercase">{t("label")}</p>
+              <div className="relative aspect-4/3 w-full flex-1 overflow-hidden border border-[#222222]">
+                <Image
+                  src={s.image}
+                  alt={s.key}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
               </div>
               <div className="flex-1">
                 <h2 className="font-display text-3xl font-light text-[#F5F5F0]">{t(s.titleKey as any)}</h2>
