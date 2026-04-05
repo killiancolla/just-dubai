@@ -114,29 +114,10 @@
     "cta_btn": "Réserver sur WhatsApp →"
   },
   "loyalty": {
-    "label": "Fidélité",
-    "title": "Programme de fidélité",
-    "subtitle": "1€ dépensé = 1 point cumulé",
-    "how_title": "Comment ça fonctionne ?",
-    "how_label": "Fonctionnement",
-    "how_desc": "Réservez via WhatsApp, nos équipes créditent vos points manuellement après chaque location.",
-    "ratio": "1€ = 1 point",
-    "ratio_desc": "Chaque euro dépensé en location",
-    "steps_label": "Étapes",
-    "step_1": "Réservez votre véhicule ou yacht via WhatsApp",
-    "step_2": "Profitez de votre expérience JustDubai",
-    "step_3": "Vos points sont crédités manuellement après la location",
-    "step_4": "Atteignez un palier pour débloquer votre récompense",
-    "tiers_title": "Les paliers de récompenses",
-    "tiers_label": "Paliers",
-    "cta": "Commencer à cumuler — Réserver sur WhatsApp",
-    "cta_title": "Commencez à cumuler dès maintenant",
-    "cta_desc": "Chaque location vous rapproche du prochain privilège.",
-    "points": "points",
-    "tier_1_reward": "100 km supplémentaires offerts",
-    "tier_2_reward": "300 km offerts",
-    "tier_3_reward": "Forfait 24h — 40% de réduction",
-    "tier_4_reward": "Forfait 48h — 40% de réduction"
+    "label": "Club Just Dubaï",
+    "title": "Just Dubaï Club",
+    "subtitle": "Notre programme de fidélité exclusif. Dès votre première réservation, vous rejoignez automatiquement le Club.",
+    "cta": "Découvrir le Club →"
   },
   "club": {
     "meta_title": "Just Dubaï Club — Programme exclusif de fidélité",

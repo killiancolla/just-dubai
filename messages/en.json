@@ -114,29 +114,10 @@
     "cta_btn": "Book on WhatsApp →"
   },
   "loyalty": {
-    "label": "Loyalty",
-    "title": "Loyalty program",
-    "subtitle": "1€ spent = 1 point earned",
-    "how_title": "How does it work?",
-    "how_label": "How it works",
-    "how_desc": "Book via WhatsApp, our team manually credits your points after each rental.",
-    "ratio": "1€ = 1 point",
-    "ratio_desc": "Every euro spent on rental",
-    "steps_label": "Steps",
-    "step_1": "Book your vehicle or yacht via WhatsApp",
-    "step_2": "Enjoy your JustDubai experience",
-    "step_3": "Your points are manually credited after the rental",
-    "step_4": "Reach a tier to unlock your reward",
-    "tiers_title": "Reward tiers",
-    "tiers_label": "Tiers",
-    "cta": "Start earning — Book on WhatsApp",
-    "cta_title": "Start earning now",
-    "cta_desc": "Every rental brings you closer to the next privilege.",
-    "points": "points",
-    "tier_1_reward": "100 extra km included",
-    "tier_2_reward": "300 km included",
-    "tier_3_reward": "24h package — 40% off",
-    "tier_4_reward": "48h package — 40% off"
+    "label": "Just Dubai Club",
+    "title": "Just Dubai Club",
+    "subtitle": "Our exclusive loyalty program. From your very first booking, you automatically join the Club.",
+    "cta": "Discover the Club →"
   },
   "club": {
     "meta_title": "Just Dubai Club — Exclusive loyalty program",

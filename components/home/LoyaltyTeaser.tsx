@@ -3,15 +3,15 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 
-const tiers = [
-  { points: 700, key: "tier_1_reward" },
-  { points: 1500, key: "tier_2_reward" },
-  { points: 3000, key: "tier_3_reward" },
-  { points: 4500, key: "tier_4_reward" },
-];
+const statuses = [
+  { key: "silver", color: "#A8A8A8" },
+  { key: "gold", color: "#C9A84C" },
+  { key: "platinum", color: "#E8D08A" },
+] as const;
 
 export default function LoyaltyTeaser() {
   const t = useTranslations("loyalty");
+  const tc = useTranslations("club");
   const locale = useLocale();
 
   return (
@@ -23,23 +23,23 @@ export default function LoyaltyTeaser() {
           <p className="mt-4 text-[#666666]">{t("subtitle")}</p>
         </div>
 
-        {/* Stepper */}
         <div className="relative flex flex-col gap-0 lg:flex-row">
-          {tiers.map((tier, i) => (
+          {statuses.map((status, i) => (
             <motion.div
-              key={tier.key}
+              key={status.key}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.15 }}
               className="relative flex-1 border border-[#E0D8C8] bg-white p-8"
             >
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-[#C9A84C] text-xs text-[#C9A84C]">
-                {i + 1}
-              </div>
-              <p className="font-display text-2xl text-[#C9A84C]">{tier.points.toLocaleString("fr-FR")}</p>
-              <p className="text-xs text-[#888888]">{t("points")}</p>
-              <p className="mt-3 text-sm text-[#1A1A1A]">{t(tier.key as any)}</p>
+              <p className="font-display text-2xl font-light" style={{ color: status.color }}>
+                {tc(`${status.key}_name`)}
+              </p>
+              <p className="mb-4 text-xs text-[#888888]">
+                {tc("from")} {tc(`${status.key}_trigger`)}
+              </p>
+              <p className="text-sm leading-relaxed text-[#1A1A1A]">{tc(`${status.key}_desc`)}</p>
             </motion.div>
           ))}
         </div>
