@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { Clock, BadgeCheck, MessageCircle, ArrowRight } from "lucide-react";
+import { Clock, BadgeCheck, MessageCircle, ArrowRight, CalendarDays } from "lucide-react";
 
 export default function HeroSection() {
   const t = useTranslations("hero");
@@ -80,6 +80,10 @@ export default function HeroSection() {
           <div className="flex items-center gap-2 rounded-full border border-[#C9A84C]/40 bg-[#0A0A0A]/60 px-4 py-2 backdrop-blur-sm">
             <MessageCircle className="h-4 w-4 shrink-0 text-[#C9A84C]" strokeWidth={1.5} />
             <span className="text-xs tracking-widest text-[#F5F5F0] uppercase">{t("badge_whatsapp")}</span>
+          </div>
+          <div className="flex items-center gap-2 rounded-full border border-[#C9A84C]/40 bg-[#0A0A0A]/60 px-4 py-2 backdrop-blur-sm">
+            <CalendarDays className="h-4 w-4 shrink-0 text-[#C9A84C]" strokeWidth={1.5} />
+            <span className="text-xs tracking-widest text-[#F5F5F0] uppercase">{t("badge_since")}</span>
           </div>
         </motion.div>
 
