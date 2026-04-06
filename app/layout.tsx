@@ -18,7 +18,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "JustDubai — Location de luxe à Dubaï",
+  title: "JustDubai | Location de luxe à Dubaï",
   description: "Location de voitures et yachts de luxe à Dubaï",
 };
 

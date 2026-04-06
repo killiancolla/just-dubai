@@ -7,7 +7,7 @@ export default defineType({
   fields: [
     defineField({
       name: "aboutContent",
-      title: "Contenu — Qui sommes-nous",
+      title: "Contenu | Qui sommes-nous",
       type: "object",
       fields: [
         { name: "fr", title: "Français", type: "array", of: [{ type: "block" }] },

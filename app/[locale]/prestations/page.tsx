@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  return { title: "Prestations incluses — JustDubai" };
+  return { title: "Prestations incluses | JustDubai" };
 }
 
 const services = [

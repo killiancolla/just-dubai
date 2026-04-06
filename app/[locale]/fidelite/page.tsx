@@ -56,30 +56,30 @@ export default async function ClubPage() {
           <div className="relative overflow-hidden">
             <Image
               src="/club/dubai-left.jpg"
-              alt="Dubaï — skyline"
+              alt="Dubaï skyline"
               fill
               className="object-cover brightness-75"
               priority
             />
-            <div className="absolute inset-y-0 right-0 w-2/3 bg-gradient-to-r from-transparent to-[#0A0A0A]" />
+            <div className="absolute inset-y-0 right-0 w-2/3 bg-linear-to-r from-transparent to-[#0A0A0A]" />
           </div>
           <div className="relative overflow-hidden">
             <Image
               src="/club/dubai-right.jpg"
-              alt="Dubaï — waterfront"
+              alt="Dubaï waterfront"
               fill
               className="object-cover brightness-75"
               priority
             />
-            <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-l from-transparent to-[#0A0A0A]" />
+            <div className="absolute inset-y-0 left-0 w-2/3 bg-linear-to-l from-transparent to-[#0A0A0A]" />
           </div>
         </div>
 
         {/* Top + bottom fades */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/70 via-transparent to-[#0A0A0A]/95" />
+        <div className="absolute inset-0 bg-linear-to-b from-[#0A0A0A]/70 via-transparent to-[#0A0A0A]/95" />
 
         {/* Decorative vertical gold line */}
-        <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-[#C9A84C]/25 to-transparent" />
+        <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-linear-to-b from-transparent via-[#C9A84C]/25 to-transparent" />
 
         {/* Content */}
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-24">
@@ -103,7 +103,6 @@ export default async function ClubPage() {
         </div>
       </section>
 
-      {/* ── INTRO ────────────────────────────────────────────────── */}
       <section className="border-b border-[#1A1A1A] px-6 py-24">
         <div className="mx-auto max-w-4xl text-center">
           <p className="mb-4 text-xs tracking-[0.5em] text-[#C9A84C] uppercase">
@@ -157,7 +156,7 @@ export default async function ClubPage() {
                 <ul className="mb-6 space-y-2">
                   {tier.generalPerks.map((perk, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm font-medium" style={{ color: tier.color }}>
-                      <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full" style={{ background: tier.color }} />
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full" style={{ background: tier.color }} />
                       {perk}
                     </li>
                   ))}
@@ -196,7 +195,7 @@ export default async function ClubPage() {
                   <ul className="space-y-2">
                     {tier.yachtPerks.filter(Boolean).map((perk, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-[#777777]">
-                        <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-[#333333]" />
+                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-[#333333]" />
                         {perk}
                       </li>
                     ))}

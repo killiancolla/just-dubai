@@ -8,7 +8,7 @@ export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const titles: Record<string, string> = { fr: "Blog — JustDubai", en: "Blog — JustDubai", ru: "Блог — JustDubai" };
+  const titles: Record<string, string> = { fr: "Blog | JustDubai", en: "Blog | JustDubai", ru: "Блог | JustDubai" };
   return { title: titles[locale] ?? titles.fr };
 }
 

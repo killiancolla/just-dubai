@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const yacht = await client.fetch(YACHT_BY_SLUG_QUERY, { slug });
   if (!yacht) return {};
   return {
-    title: `${yacht.name} — Yacht Dubai`,
+    title: `${yacht.name} | Yacht Dubai`,
     description: `Louer le yacht ${yacht.name} à Dubai. ${yacht.lengthMeters}m, ${yacht.capacity} personnes.`,
     openGraph: yacht.photos?.[0] ? { images: [urlFor(yacht.photos[0]).width(1200).height(630).url()] } : undefined,
   };
@@ -66,7 +66,7 @@ export default async function YachtDetailPage({ params }: { params: Promise<{ lo
                 ].map((spec) => (
                   <div key={spec.label}>
                     <p className="text-xs tracking-widest text-[#888888] uppercase">{spec.label}</p>
-                    <p className="mt-1 text-[#F5F5F0]">{spec.value ?? "—"}</p>
+                    <p className="mt-1 text-[#F5F5F0]">{spec.value ?? "-"}</p>
                   </div>
                 ))}
               </div>

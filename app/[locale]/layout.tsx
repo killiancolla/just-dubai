@@ -11,7 +11,7 @@ import { CurrencyProvider } from "@/contexts/CurrencyContext";
 
 export const metadata: Metadata = {
   title: {
-    default: "JustDubai — Location de luxe à Dubaï",
+    default: "JustDubai | Location de luxe à Dubaï",
     template: "%s | JustDubai",
   },
   description: "Location de voitures et yachts de luxe à Dubaï",
