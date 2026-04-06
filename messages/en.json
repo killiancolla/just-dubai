@@ -237,6 +237,10 @@
     "vehicle_bookings": "car bookings / week",
     "yacht_bookings": "yacht bookings / week"
   },
+  "faq": {
+    "label": "FAQ",
+    "title": "Frequently asked questions"
+  },
   "common": {
     "view_all": "View all",
     "back": "Back",

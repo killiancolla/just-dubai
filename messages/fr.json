@@ -237,6 +237,10 @@
     "vehicle_bookings": "réservations voitures / semaine",
     "yacht_bookings": "réservations yachts / semaine"
   },
+  "faq": {
+    "label": "FAQ",
+    "title": "Questions fréquentes"
+  },
   "common": {
     "view_all": "Voir tout",
     "back": "Retour",

@@ -133,3 +133,9 @@ export const BLOG_POST_BY_SLUG_QUERY = `*[_type == "blogPost" && slug.current ==
 export const SOCIAL_PROOF_QUERY = `*[_type == "siteSettings"][0] {
   "socialProof": socialProof
 }`;
+
+export const FAQ_QUERY = `*[_type == "faq"] | order(order asc) {
+  _id,
+  question,
+  answer
+}`;
