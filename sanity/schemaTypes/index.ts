@@ -4,7 +4,8 @@ import yacht from '../schemas/yacht'
 import blogPost from '../schemas/blogPost'
 import siteSettings from '../schemas/siteSettings'
 import faq from '../schemas/faq'
+import legalPage from '../schemas/legalPage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [vehicle, yacht, blogPost, siteSettings, faq],
+  types: [vehicle, yacht, blogPost, siteSettings, faq, legalPage],
 }

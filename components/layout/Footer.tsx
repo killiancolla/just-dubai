@@ -102,7 +102,24 @@ export default function Footer() {
         </div>
 
         <div className="gold-separator mt-12" />
-        <p className="mt-6 text-center text-xs text-[#888888]">{t("footer.copyright")}</p>
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+          <p className="text-xs text-[#888888]">{t("footer.copyright")}</p>
+          <div className="flex gap-6">
+            {[
+              { href: "/legal/mentions-legales", label: t("footer.legal_mentions") },
+              { href: "/legal/cgv", label: t("footer.cgv") },
+              { href: "/legal/confidentialite", label: t("footer.privacy") },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={`/${locale}${link.href}`}
+                className="text-xs text-[#888888] transition-colors hover:text-[#C9A84C]"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </footer>
   );

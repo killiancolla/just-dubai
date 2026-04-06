@@ -139,3 +139,8 @@ export const FAQ_QUERY = `*[_type == "faq"] | order(order asc) {
   question,
   answer
 }`;
+
+export const LEGAL_PAGE_QUERY = `*[_type == "legalPage" && pageId == $pageId][0] {
+  title,
+  content
+}`;
