@@ -25,47 +25,82 @@ export default function PhotoGallery({ photos, name }: Props) {
 
   return (
     <>
-      {/* Grid galerie */}
-      <div className="grid gap-1 h-[55vh]" style={{ gridTemplateColumns: side.length ? "2fr 1fr" : "1fr" }}>
-        {/* Image principale */}
-        <div className="relative overflow-hidden cursor-pointer" onClick={() => setLightbox(true)}>
+      <div className="h-[50vh] sm:h-[55vh]">
+        <div className="relative h-full sm:hidden cursor-pointer" onClick={() => setLightbox(true)}>
           <Image
             src={photos[current].url}
             alt={photos[current].alt}
             fill
-            sizes="(max-width: 768px) 100vw, 66vw"
-            className="object-cover transition-transform duration-700 hover:scale-105"
+            sizes="100vw"
+            className="object-cover"
             quality={90}
             priority
           />
+          {photos.length > 1 && (
+            <>
+              <button
+                className="absolute left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center bg-black/50 text-white text-xl"
+                onClick={(e) => { e.stopPropagation(); setCurrent((i) => (i - 1 + photos.length) % photos.length); }}
+              >
+                ‹
+              </button>
+              <button
+                className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center bg-black/50 text-white text-xl"
+                onClick={(e) => { e.stopPropagation(); setCurrent((i) => (i + 1) % photos.length); }}
+              >
+                ›
+              </button>
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                {photos.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={(e) => { e.stopPropagation(); setCurrent(i); }}
+                    className={`h-1 transition-all ${i === current ? "w-6 bg-[#C9A84C]" : "w-1.5 bg-white/50"}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
-        {/* Grille latérale */}
-        {side.length > 0 && (
-          <div className="grid gap-1" style={{ gridTemplateRows: `repeat(${Math.min(side.length, 4)}, 1fr)` }}>
-            {side.map((photo, i) => (
-              <div
-                key={i}
-                className="relative overflow-hidden cursor-pointer"
-                onClick={() => { setCurrent(i + 1); setLightbox(true); }}
-              >
-                <Image
-                  src={photo.url}
-                  alt={`${name} ${i + 2}`}
-                  fill
-                  sizes="33vw"
-                  className="object-cover transition-transform duration-700 hover:scale-105"
-                />
-                {/* Overlay "voir tout" sur la dernière vignette */}
-                {i === side.length - 1 && photos.length > 5 && (
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                    <span className="text-white text-sm tracking-widest">+{photos.length - 5}</span>
-                  </div>
-                )}
-              </div>
-            ))}
+        {/* Desktop : grille 2 colonnes */}
+        <div className="hidden sm:grid gap-1 h-full" style={{ gridTemplateColumns: side.length ? "2fr 1fr" : "1fr" }}>
+          <div className="relative overflow-hidden cursor-pointer" onClick={() => setLightbox(true)}>
+            <Image
+              src={photos[current].url}
+              alt={photos[current].alt}
+              fill
+              sizes="66vw"
+              className="object-cover transition-transform duration-700 hover:scale-105"
+              quality={90}
+              priority
+            />
           </div>
-        )}
+          {side.length > 0 && (
+            <div className="grid gap-1" style={{ gridTemplateRows: `repeat(${Math.min(side.length, 4)}, 1fr)` }}>
+              {side.map((photo, i) => (
+                <div
+                  key={i}
+                  className="relative overflow-hidden cursor-pointer"
+                  onClick={() => { setCurrent(i + 1); setLightbox(true); }}
+                >
+                  <Image
+                    src={photo.url}
+                    alt={`${name} ${i + 2}`}
+                    fill
+                    sizes="33vw"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                  {i === side.length - 1 && photos.length > 5 && (
+                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                      <span className="text-white text-sm tracking-widest">+{photos.length - 5}</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Lightbox */}
@@ -86,7 +121,7 @@ export default function PhotoGallery({ photos, name }: Props) {
           >
             ‹
           </button>
-          <div className="relative w-full max-w-5xl h-[80vh] mx-16" onClick={(e) => e.stopPropagation()}>
+          <div className="relative w-full max-w-5xl h-[80vh] mx-4 sm:mx-16" onClick={(e) => e.stopPropagation()}>
             <Image
               src={photos[current].url}
               alt={photos[current].alt}

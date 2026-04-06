@@ -102,9 +102,9 @@ export default function Footer() {
         </div>
 
         <div className="gold-separator mt-12" />
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+        <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-[#888888]">{t("footer.copyright")}</p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-4 sm:gap-6">
             {[
               { href: "/legal/mentions-legales", label: t("footer.legal_mentions") },
               { href: "/legal/cgv", label: t("footer.cgv") },

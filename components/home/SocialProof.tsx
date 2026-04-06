@@ -77,7 +77,7 @@ export default function SocialProof({ data }: { data: SocialProofData | null }) 
           <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("label")}</p>
           <h2 className="font-display text-4xl font-light text-[#F5F5F0]">{t("title")}</h2>
         </div>
-        <div className={`grid grid-cols-2 gap-8 md:grid-cols-${stats.length}`}>
+        <div className={`grid grid-cols-2 gap-3 sm:gap-8 md:grid-cols-${stats.length}`}>
           {stats.map((stat, i) => (
             <motion.div
               key={i}
@@ -85,13 +85,13 @@ export default function SocialProof({ data }: { data: SocialProofData | null }) 
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="border border-[#222222] p-8 text-center"
+              className="border border-[#222222] p-4 text-center sm:p-8"
             >
-              <div className="mb-4 flex justify-center text-[#C9A84C]">{stat.icon}</div>
-              <p className="font-display text-4xl font-light text-[#F5F5F0] mb-2">
+              <div className="mb-3 flex justify-center text-[#C9A84C]">{stat.icon}</div>
+              <p className="font-display text-2xl font-light text-[#F5F5F0] mb-1 sm:text-4xl sm:mb-2">
                 <AnimatedCounter value={stat.value} />
               </p>
-              <p className="text-xs tracking-widest text-[#888888] uppercase">{stat.label}</p>
+              <p className="text-xs tracking-widest text-[#888888] uppercase leading-tight">{stat.label}</p>
             </motion.div>
           ))}
         </div>

@@ -60,19 +60,19 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
 
       <div className="mx-auto max-w-7xl px-6 py-12">
         {/* Filters bar */}
-        <div className="mb-8 flex flex-wrap items-center gap-4 border-b border-[#222222] pb-8">
+        <div className="mb-8 grid grid-cols-2 gap-3 border-b border-[#222222] pb-8 sm:flex sm:flex-wrap sm:items-center sm:gap-4">
           <input
             type="text"
             placeholder={t("filter_model")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 min-w-[160px] bg-[#111111] border border-[#222222] px-4 py-2 text-sm text-[#F5F5F0] placeholder-[#444] outline-none focus:border-[#C9A84C]"
+            className="col-span-2 w-full bg-[#111111] border border-[#222222] px-4 py-2 text-sm text-[#F5F5F0] placeholder-[#444] outline-none focus:border-[#C9A84C] sm:flex-1 sm:min-w-[160px] sm:w-auto"
           />
           <div className="relative">
             <select
               value={selectedBrand}
               onChange={(e) => setSelectedBrand(e.target.value)}
-              className="appearance-none bg-[#111111] border border-[#222222] pl-4 pr-10 py-2 text-sm text-[#F5F5F0] outline-none focus:border-[#C9A84C]"
+              className="w-full appearance-none bg-[#111111] border border-[#222222] pl-4 pr-10 py-2 text-sm text-[#F5F5F0] outline-none focus:border-[#C9A84C]"
             >
               <option value="">{t("filter_brand")}</option>
               {brands.map((b) => <option key={b} value={b}>{b}</option>)}
@@ -83,7 +83,7 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
             <select
               value={selectedFuel}
               onChange={(e) => setSelectedFuel(e.target.value)}
-              className="appearance-none bg-[#111111] border border-[#222222] pl-4 pr-10 py-2 text-sm text-[#F5F5F0] outline-none focus:border-[#C9A84C]"
+              className="w-full appearance-none bg-[#111111] border border-[#222222] pl-4 pr-10 py-2 text-sm text-[#F5F5F0] outline-none focus:border-[#C9A84C]"
             >
               <option value="">{t("filter_fuel")}</option>
               <option value="essence">{t("fuel_essence")}</option>
@@ -92,12 +92,12 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
             </select>
             <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-[#888888]" strokeWidth={1.5} />
           </div>
-          <div className="relative flex items-center gap-2">
-            <span className="text-xs tracking-widest text-[#888888] uppercase">{t("sort_by")}</span>
+          <div className="relative col-span-2 sm:col-span-1 sm:flex sm:items-center sm:gap-2">
+            <span className="sr-only sm:not-sr-only text-xs tracking-widest text-[#888888] uppercase sm:inline">{t("sort_by")}</span>
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value)}
-              className="appearance-none bg-[#111111] border border-[#222222] pl-4 pr-10 py-2 text-sm text-[#F5F5F0] outline-none focus:border-[#C9A84C]"
+              className="w-full appearance-none bg-[#111111] border border-[#222222] pl-4 pr-10 py-2 text-sm text-[#F5F5F0] outline-none focus:border-[#C9A84C]"
             >
               <option value="newest">{t("sort_newest")}</option>
               <option value="alpha">A → Z</option>

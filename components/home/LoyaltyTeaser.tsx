@@ -23,7 +23,7 @@ export default function LoyaltyTeaser() {
           <p className="mt-4 text-[#666666]">{t("subtitle")}</p>
         </div>
 
-        <div className="relative flex flex-col gap-0 lg:flex-row">
+        <div className="relative flex flex-col lg:flex-row divide-y divide-[#E0D8C8] lg:divide-y-0 lg:divide-x border border-[#E0D8C8]">
           {statuses.map((status, i) => (
             <motion.div
               key={status.key}
@@ -31,7 +31,7 @@ export default function LoyaltyTeaser() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="relative flex-1 border border-[#E0D8C8] bg-white p-8"
+              className="relative flex-1 bg-white p-8"
             >
               <p className="font-display text-2xl font-light" style={{ color: status.color }}>
                 {tc(`${status.key}_name`)}
