@@ -6,15 +6,15 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
-      name: "aboutContent",
-      title: "Contenu | Qui sommes-nous",
+      name: "socialProof",
+      title: "Preuves sociales (homepage)",
       type: "object",
       fields: [
-        { name: "fr", title: "Français", type: "array", of: [{ type: "block" }] },
-        { name: "en", title: "English", type: "array", of: [{ type: "block" }] },
-        { name: "ru", title: "Русский", type: "array", of: [{ type: "block" }] },
+        defineField({ name: "clientsCount", title: "Clients satisfaits", type: "number", description: "Ex: 1500" }),
+        defineField({ name: "followersCount", title: "Abonnés réseaux sociaux", type: "number", description: "Ex: 12000" }),
+        defineField({ name: "weeklyVehicleBookings", title: "Réservations voitures / semaine", type: "number", description: "Ex: 40" }),
+        defineField({ name: "weeklyYachtBookings", title: "Réservations yachts / semaine", type: "number", description: "Ex: 15" }),
       ],
     }),
-    defineField({ name: "aboutImage", title: "Photo équipe / Dubaï", type: "image", options: { hotspot: true } }),
   ],
 });

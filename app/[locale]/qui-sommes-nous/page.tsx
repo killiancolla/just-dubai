@@ -1,4 +1,3 @@
-import { client, SITE_SETTINGS_QUERY } from "@/sanity/lib/client";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 
@@ -27,7 +26,6 @@ const teamMembers = [
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations("about");
-  const settings = await client.fetch(SITE_SETTINGS_QUERY);
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] pt-20">

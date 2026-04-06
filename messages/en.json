@@ -229,6 +229,14 @@
     "usd": "Dollar ($)",
     "rub": "Ruble (₽)"
   },
+  "social_proof": {
+    "label": "By the numbers",
+    "title": "Trusted by our clients",
+    "clients": "satisfied clients",
+    "followers": "followers",
+    "vehicle_bookings": "car bookings / week",
+    "yacht_bookings": "yacht bookings / week"
+  },
   "common": {
     "view_all": "View all",
     "back": "Back",

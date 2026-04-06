@@ -229,6 +229,14 @@
     "usd": "Dollar ($)",
     "rub": "Rouble (₽)"
   },
+  "social_proof": {
+    "label": "En chiffres",
+    "title": "La confiance de nos clients",
+    "clients": "clients satisfaits",
+    "followers": "abonnés",
+    "vehicle_bookings": "réservations voitures / semaine",
+    "yacht_bookings": "réservations yachts / semaine"
+  },
   "common": {
     "view_all": "Voir tout",
     "back": "Retour",
