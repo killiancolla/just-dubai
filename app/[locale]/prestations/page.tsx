@@ -1,9 +1,19 @@
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { generateAlternates } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  return { title: "Prestations incluses | JustDubai" };
+  const { locale } = await params;
+  const titles: Record<string, string> = {
+    fr: "Prestations incluses — Livraison, sans caution, WhatsApp",
+    en: "Included services — Delivery, no deposit, WhatsApp",
+    ru: "Включённые услуги — доставка, без залога, WhatsApp",
+  };
+  return {
+    title: titles[locale] ?? titles.fr,
+    alternates: generateAlternates(locale, "/prestations"),
+  };
 }
 
 const services = [

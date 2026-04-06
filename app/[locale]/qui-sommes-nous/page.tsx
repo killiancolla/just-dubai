@@ -1,12 +1,16 @@
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
+import { generateAlternates } from "@/lib/seo";
 
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const titles: Record<string, string> = { fr: "Qui sommes-nous | JustDubai", en: "About us | JustDubai", ru: "О нас | JustDubai" };
-  return { title: titles[locale] ?? titles.fr };
+  return {
+    title: titles[locale] ?? titles.fr,
+    alternates: generateAlternates(locale, "/qui-sommes-nous"),
+  };
 }
 
 const valueKeys = [

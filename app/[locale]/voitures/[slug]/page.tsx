@@ -7,17 +7,25 @@ import PhotoGallery from "@/components/catalogue/PhotoGallery";
 import type { Metadata } from "next";
 import { FaWhatsapp } from "react-icons/fa";
 import PriceDisplay from "@/components/ui/PriceDisplay";
+import { generateAlternates } from "@/lib/seo";
 
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const vehicle = await client.fetch(VEHICLE_BY_SLUG_QUERY, { slug });
   if (!vehicle) return {};
   return {
     title: `${vehicle.name} | Location Dubai`,
     description: `Louer le ${vehicle.name} à Dubai. ${vehicle.brand} ${vehicle.model} ${vehicle.year}.`,
-    openGraph: vehicle.photos?.[0] ? { images: [urlFor(vehicle.photos[0]).width(1200).height(630).url()] } : undefined,
+    alternates: generateAlternates(locale, `/voitures/${slug}`),
+    openGraph: vehicle.photos?.[0]
+      ? {
+          images: [urlFor(vehicle.photos[0]).width(1200).height(630).url()],
+          title: `${vehicle.name} | Location Dubai`,
+          description: `Louer le ${vehicle.name} à Dubai. ${vehicle.brand} ${vehicle.model} ${vehicle.year}.`,
+        }
+      : undefined,
   };
 }
 

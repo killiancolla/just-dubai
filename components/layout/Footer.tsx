@@ -64,14 +64,14 @@ export default function Footer() {
             <h4 className="mb-4 text-xs tracking-widest text-[#C9A84C] uppercase">
               {t("footer.contact")}
             </h4>
-            <ul className="space-y-3 text-sm text-[#888888]">
-              <li>Dubai, UAE</li>
-              <li>
+            <address className="not-italic space-y-3 text-sm text-[#888888]">
+              <p>Dubai, United Arab Emirates</p>
+              <p>
                 <a href="https://wa.me/971581515981" className="hover:text-[#C9A84C]">
                   WhatsApp: +971 58 151 5981
                 </a>
-              </li>
-            </ul>
+              </p>
+            </address>
           </div>
 
           {/* Language + Social */}
@@ -80,10 +80,10 @@ export default function Footer() {
               {t("footer.follow")}
             </h4>
             <div className="flex gap-4">
-              <a href="#" aria-label="Instagram" className="text-[#888888] hover:text-[#C9A84C]">
+              <a href="https://www.instagram.com/just_dubaii" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-[#888888] hover:text-[#C9A84C]">
                 <FaInstagram className="h-5 w-5" />
               </a>
-              <a href="#" aria-label="TikTok" className="text-[#888888] hover:text-[#C9A84C]">
+              <a href="https://www.tiktok.com/@just.dubaii" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="text-[#888888] hover:text-[#C9A84C]">
                 <FaTiktok className="h-5 w-5" />
               </a>
             </div>

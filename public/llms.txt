@@ -1,0 +1,27 @@
+# JustDubai
+
+> JustDubai est un service de location de voitures et yachts de luxe à Dubaï. Réservation rapide via WhatsApp, sans caution, avec livraison.
+
+## Services
+
+- Location de voitures de luxe à Dubaï (Ferrari, Lamborghini, Range Rover, Rolls-Royce...)
+- Location de yachts privés à Dubaï
+- Livraison à domicile ou à l'hôtel
+- Sans caution
+- Réservation via WhatsApp : +971 58 151 5981
+- Programme de fidélité (Silver, Gold, Platinum)
+
+## Pages principales
+
+- https://justdubai.com/fr — Accueil
+- https://justdubai.com/fr/voitures — Catalogue voitures
+- https://justdubai.com/fr/yachts — Catalogue yachts
+- https://justdubai.com/fr/prestations — Services inclus
+- https://justdubai.com/fr/fidelite — Programme de fidélité
+- https://justdubai.com/fr/blog — Blog
+- https://justdubai.com/fr/qui-sommes-nous — À propos
+
+## Contact
+
+- WhatsApp: +971 58 151 5981
+- Localisation: Dubaï, Émirats Arabes Unis

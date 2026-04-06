@@ -1,10 +1,15 @@
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { generateAlternates } from "@/lib/seo";
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations("club");
-  return { title: t("meta_title") };
+  return {
+    title: t("meta_title"),
+    alternates: generateAlternates(locale, "/fidelite"),
+  };
 }
 
 export const revalidate = 60;

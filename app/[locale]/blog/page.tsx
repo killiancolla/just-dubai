@@ -3,13 +3,21 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { generateAlternates } from "@/lib/seo";
 
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const titles: Record<string, string> = { fr: "Blog | JustDubai", en: "Blog | JustDubai", ru: "Блог | JustDubai" };
-  return { title: titles[locale] ?? titles.fr };
+  const titles: Record<string, string> = {
+    fr: "Blog — Conseils & actualités sur la location de luxe à Dubaï",
+    en: "Blog — Tips & news about luxury rental in Dubai",
+    ru: "Блог — советы и новости об аренде роскоши в Дубае",
+  };
+  return {
+    title: titles[locale] ?? titles.fr,
+    alternates: generateAlternates(locale, "/blog"),
+  };
 }
 
 export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {

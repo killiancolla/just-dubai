@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { generateAlternates } from "@/lib/seo";
 import { client } from "@/sanity/lib/client";
 import { FEATURED_VEHICLES_QUERY, FEATURED_YACHTS_QUERY, LATEST_BLOG_POSTS_QUERY, SOCIAL_PROOF_QUERY, FAQ_QUERY } from "@/sanity/lib/client";
 import HeroSection from "@/components/home/HeroSection";
@@ -15,6 +17,11 @@ import SocialProof from "@/components/home/SocialProof";
 import JsonLd from "@/components/ui/JsonLd";
 
 export const revalidate = 60;
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return { alternates: generateAlternates(locale) };
+}
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

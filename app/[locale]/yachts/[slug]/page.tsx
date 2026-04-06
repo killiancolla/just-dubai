@@ -7,17 +7,25 @@ import PhotoGallery from "@/components/catalogue/PhotoGallery";
 import type { Metadata } from "next";
 import { FaWhatsapp } from "react-icons/fa";
 import PriceDisplay from "@/components/ui/PriceDisplay";
+import { generateAlternates } from "@/lib/seo";
 
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const yacht = await client.fetch(YACHT_BY_SLUG_QUERY, { slug });
   if (!yacht) return {};
   return {
     title: `${yacht.name} | Yacht Dubai`,
     description: `Louer le yacht ${yacht.name} à Dubai. ${yacht.lengthMeters}m, ${yacht.capacity} personnes.`,
-    openGraph: yacht.photos?.[0] ? { images: [urlFor(yacht.photos[0]).width(1200).height(630).url()] } : undefined,
+    alternates: generateAlternates(locale, `/yachts/${slug}`),
+    openGraph: yacht.photos?.[0]
+      ? {
+          images: [urlFor(yacht.photos[0]).width(1200).height(630).url()],
+          title: `${yacht.name} | Yacht Dubai`,
+          description: `Louer le yacht ${yacht.name} à Dubai. ${yacht.lengthMeters}m, ${yacht.capacity} personnes.`,
+        }
+      : undefined,
   };
 }
 

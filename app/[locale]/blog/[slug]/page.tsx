@@ -5,6 +5,7 @@ import Image from "next/image";
 import JsonLd from "@/components/ui/JsonLd";
 import { PortableText } from "@portabletext/react";
 import type { Metadata } from "next";
+import { generateAlternates } from "@/lib/seo";
 
 export const revalidate = 60;
 
@@ -17,7 +18,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title,
     description,
-    openGraph: post.coverImage ? { images: [urlFor(post.coverImage).width(1200).height(630).url()] } : undefined,
+    alternates: generateAlternates(locale, `/blog/${slug}`),
+    openGraph: post.coverImage
+      ? {
+          images: [urlFor(post.coverImage).width(1200).height(630).url()],
+          title,
+          description,
+        }
+      : undefined,
   };
 }
 
