@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/client";
+import sanityLoader from "@/lib/sanityLoader";
 import Badge from "@/components/ui/Badge";
 import { ChevronDown } from "lucide-react";
 import PriceDisplay from "@/components/ui/PriceDisplay";
@@ -125,11 +126,15 @@ export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) 
                   <div className="relative aspect-[4/3] overflow-hidden">
                     {vehicle.mainPhoto ? (
                       <Image
-                        src={urlFor(vehicle.mainPhoto).width(600).height(450).url()}
+                        loader={sanityLoader}
+                        src={urlFor(vehicle.mainPhoto).url()}
                         alt={vehicle.name}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        quality={75}
+                        priority={i < 4}
+                        loading={i < 4 ? "eager" : "lazy"}
                       />
                     ) : (
                       <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-[#888888] text-sm">

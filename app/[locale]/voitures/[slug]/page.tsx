@@ -50,11 +50,13 @@ export default async function VehicleDetailPage({ params }: { params: Promise<{ 
     },
   };
 
-  const photos = (vehicle.photos ?? []).map((photo: any, i: number) => ({
-    url: urlFor(photo).url(),
-    thumbUrl: urlFor(photo).width(200).height(150).url(),
-    alt: `${vehicle.name} ${i + 1}`,
-  }));
+  const photos = (vehicle.photos ?? [])
+    .filter((photo: any) => photo?.asset?._ref)
+    .map((photo: any, i: number) => ({
+      url: urlFor(photo).url(),
+      thumbUrl: urlFor(photo).width(200).height(150).url(),
+      alt: `${vehicle.name} ${i + 1}`,
+    }));
 
   return (
     <>
