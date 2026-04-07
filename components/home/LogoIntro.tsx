@@ -36,11 +36,11 @@ export default function LogoIntro() {
             <Image
               src="/logo.png"
               alt="JustDubai"
-              width={500}
-              height={500}
+              width={320}
+              height={320}
               className="h-64 w-auto object-contain md:h-80"
-              unoptimized
               priority
+              sizes="(max-width: 768px) 256px, 320px"
             />
           </motion.div>
         </motion.div>

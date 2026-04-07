@@ -55,7 +55,7 @@ export default function Header() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
         <Link href={`/${locale}`} className="flex items-center">
-          <Image src="/logo.png" alt="JustDubai" width={200} height={68} className="h-14 w-auto object-contain" unoptimized priority loading="eager" />
+          <Image src="/logo.png" alt="JustDubai" width={200} height={68} className="h-14 w-auto object-contain" priority sizes="165px" />
         </Link>
 
         {/* Desktop nav */}

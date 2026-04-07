@@ -60,7 +60,7 @@ export default function PhotoGallery({ photos, name }: Props) {
             fill
             sizes="(max-width: 640px) 100vw, 66vw"
             className="object-cover"
-            quality={85}
+            quality={75}
             loading="eager"
             priority
           />
@@ -102,7 +102,7 @@ export default function PhotoGallery({ photos, name }: Props) {
               fill
               sizes="(max-width: 640px) 100vw, 66vw"
               className="object-cover transition-transform duration-700 hover:scale-105"
-              quality={85}
+              quality={75}
               loading="eager"
               priority
             />

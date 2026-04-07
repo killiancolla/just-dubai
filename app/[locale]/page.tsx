@@ -49,6 +49,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
+      <link rel="preload" as="image" href="/hero-poster.jpg" fetchPriority="high" />
       <JsonLd data={localBusinessSchema} />
       <LogoIntro />
       <HeroSection />

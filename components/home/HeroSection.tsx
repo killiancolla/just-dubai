@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { Clock, BadgeCheck, MessageCircle, ArrowRight, CalendarDays } from "lucide-react";
-
 export default function HeroSection() {
   const t = useTranslations("hero");
   const locale = useLocale();
@@ -15,9 +14,12 @@ export default function HeroSection() {
         muted
         loop
         playsInline
+        poster="/hero-poster.jpg"
         className="absolute inset-0 h-full w-full object-cover"
+        suppressHydrationWarning
       >
-        <source src="/hero-ferrari.mp4" type="video/mp4" />
+        <source src="/hero-ferrari-mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
+        <source src="/hero-ferrari-desktop.mp4" type="video/mp4" />
       </video>
 
       {/* Dark overlay for readability */}

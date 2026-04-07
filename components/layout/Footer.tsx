@@ -20,7 +20,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <Link href={`/${locale}`}>
-              <Image src="/logo.png" alt="JustDubai" width={120} height={48} className="h-10 w-auto object-contain" unoptimized />
+              <Image src="/logo.png" alt="JustDubai" width={120} height={48} className="h-10 w-auto object-contain" sizes="120px" />
             </Link>
             <p className="mt-4 text-sm text-[#888888]">{t("footer.tagline")}</p>
             <a
