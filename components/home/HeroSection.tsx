@@ -15,7 +15,7 @@ export default function HeroSection() {
         loop
         playsInline
         poster="/hero-poster.jpg"
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover blur-[2px] sm:blur-none"
         suppressHydrationWarning
       >
         <source src="/hero-ferrari-mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
