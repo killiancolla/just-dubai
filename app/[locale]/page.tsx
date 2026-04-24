@@ -38,7 +38,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     "@type": "LocalBusiness",
     name: "JustDubai",
     description: "Location de voitures et yachts de luxe à Dubaï",
-    url: "https://justdubai.com",
+    url: "https://www.justdubaiconciergerie.com",
     telephone: "+971581515981",
     address: {
       "@type": "PostalAddress",

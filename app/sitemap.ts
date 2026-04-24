@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { client } from "@/sanity/lib/client";
 
-const BASE_URL = "https://justdubai.com";
+const BASE_URL = "https://www.justdubaiconciergerie.com";
 const LOCALES = ["fr", "en", "ru"];
 
 const STATIC_PATHS = [

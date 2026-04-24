@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       template: "%s | JustDubai",
     },
     description,
-    metadataBase: new URL("https://justdubai.com"),
+    metadataBase: new URL("https://www.justdubaiconciergerie.com"),
     openGraph: {
       type: "website",
       locale: ogLocales[locale] ?? "fr_FR",

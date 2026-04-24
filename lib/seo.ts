@@ -1,4 +1,4 @@
-const BASE_URL = "https://justdubai.com";
+const BASE_URL = "https://www.justdubaiconciergerie.com";
 const LOCALES = ["fr", "en", "ru"] as const;
 
 export function generateAlternates(locale: string, path: string = "") {
