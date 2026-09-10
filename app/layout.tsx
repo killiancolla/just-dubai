@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { getLocale } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -43,6 +44,7 @@ export default async function RootLayout({
         {children}
         <Analytics />
       </body>
+      <GoogleAnalytics gaId="AW-18438884789" />
     </html>
   );
 }
