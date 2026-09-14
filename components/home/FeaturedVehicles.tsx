@@ -5,17 +5,7 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { urlFor } from "@/sanity/lib/client";
 import PriceDisplay from "@/components/ui/PriceDisplay";
-
-interface Vehicle {
-  _id: string;
-  name: string;
-  slug: { current: string };
-  brand: string;
-  model: string;
-  year: number;
-  pricePerDay?: number;
-  mainPhoto: any;
-}
+import type { Vehicle } from "@/types/sanity";
 
 interface Props {
   vehicles: Vehicle[];

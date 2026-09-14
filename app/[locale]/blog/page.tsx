@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { generateAlternates } from "@/lib/seo";
+import type { BlogPost, Locale } from "@/types/sanity";
 
 export const revalidate = 60;
 
@@ -40,9 +41,10 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
           <p className="text-center text-[#888888]">{t("no_results")}</p>
         ) : (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post: any) => {
-              const title = post.title?.[locale] ?? post.title?.fr ?? "";
-              const excerpt = post.excerpt?.[locale] ?? post.excerpt?.fr ?? "";
+            {posts.map((post: BlogPost) => {
+              const l = locale as Locale;
+              const title = post.title?.[l] ?? post.title?.fr ?? "";
+              const excerpt = post.excerpt?.[l] ?? post.excerpt?.fr ?? "";
               return (
                 <Link key={post._id} href={`/${locale}/blog/${post.slug.current}`} className="luxury-card group block bg-[#111111]">
                   <div className="relative aspect-video overflow-hidden">

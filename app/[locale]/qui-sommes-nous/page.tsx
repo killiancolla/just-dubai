@@ -78,8 +78,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           {valueKeys.map((v) => (
             <div key={v.titleKey} className="border border-[#222222] p-8">
               <div className="mb-4 text-2xl text-[#C9A84C]">{v.icon}</div>
-              <h3 className="font-display mb-2 text-xl text-[#F5F5F0]">{t(v.titleKey as any)}</h3>
-              <p className="text-sm leading-relaxed text-[#888888]">{t(v.descKey as any)}</p>
+              <h3 className="font-display mb-2 text-xl text-[#F5F5F0]">{t(v.titleKey as Parameters<typeof t>[0])}</h3>
+              <p className="text-sm leading-relaxed text-[#888888]">{t(v.descKey as Parameters<typeof t>[0])}</p>
             </div>
           ))}
         </div>

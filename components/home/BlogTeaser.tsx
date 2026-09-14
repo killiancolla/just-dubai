@@ -4,18 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { urlFor } from "@/sanity/lib/client";
+import type { BlogPost } from "@/types/sanity";
 
-interface Post {
-  _id: string;
-  title: { fr?: string; en?: string; ru?: string };
-  slug: { current: string };
-  publishedAt: string;
-  coverImage: any;
-  excerpt: { fr?: string; en?: string; ru?: string };
-  categories: string[];
-}
-
-export default function BlogTeaser({ posts }: { posts: Post[] }) {
+export default function BlogTeaser({ posts }: { posts: BlogPost[] }) {
   const t = useTranslations();
   const locale = useLocale();
 

@@ -72,13 +72,11 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Point central */}
       <div
         ref={dotRef}
         className="pointer-events-none fixed z-[9999] top-0 left-0 h-1 w-1 rounded-full bg-[#C9A84C]"
         style={{ willChange: "transform" }}
       />
-      {/* Anneau avec lag */}
       <div
         ref={ringWrapperRef}
         className="pointer-events-none fixed z-[9998] top-0 left-0"

@@ -2,12 +2,13 @@ import { client, YACHT_BY_SLUG_QUERY, urlFor } from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import JsonLd from "@/components/ui/JsonLd";
-import Badge from "@/components/ui/Badge";
 import PhotoGallery from "@/components/catalogue/PhotoGallery";
 import type { Metadata } from "next";
 import { FaWhatsapp } from "react-icons/fa";
 import PriceDisplay from "@/components/ui/PriceDisplay";
+import Badge from "@/components/ui/Badge";
 import { generateAlternates } from "@/lib/seo";
+import type { Locale } from "@/types/sanity";
 
 export const revalidate = 60;
 
@@ -37,7 +38,8 @@ export default async function YachtDetailPage({ params }: { params: Promise<{ lo
   if (!yacht) notFound();
 
   const whatsappMsg = encodeURIComponent(`${t("whatsapp_msg")} ${yacht.name}`);
-  const description = yacht.description?.[locale] ?? yacht.description?.fr ?? "";
+  const l = locale as Locale;
+  const description = yacht.description?.[l] ?? yacht.description?.fr ?? "";
 
   const productSchema = {
     "@context": "https://schema.org",
@@ -49,7 +51,7 @@ export default async function YachtDetailPage({ params }: { params: Promise<{ lo
     },
   };
 
-  const photos = (yacht.photos ?? []).map((photo: any, i: number) => ({
+  const photos = (yacht.photos ?? []).map((photo: { asset: { _ref: string; _type: string }; alt?: string }, i: number) => ({
     url: urlFor(photo).url(),
     thumbUrl: urlFor(photo).width(200).height(150).url(),
     alt: `${yacht.name} ${i + 1}`,

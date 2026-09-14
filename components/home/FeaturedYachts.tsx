@@ -5,17 +5,7 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { urlFor } from "@/sanity/lib/client";
 import PriceDisplay from "@/components/ui/PriceDisplay";
-import Badge from "@/components/ui/Badge";
-
-interface Yacht {
-  _id: string;
-  name: string;
-  slug: { current: string };
-  lengthMeters: number;
-  capacity: number;
-  pricePerDay?: number;
-  mainPhoto: any;
-}
+import type { Yacht } from "@/types/sanity";
 
 export default function FeaturedYachts({ yachts }: { yachts: Yacht[] }) {
   const t = useTranslations();

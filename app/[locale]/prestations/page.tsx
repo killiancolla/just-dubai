@@ -77,10 +77,10 @@ export default async function PrestationsPage({ params }: { params: Promise<{ lo
                 />
               </div>
               <div className="flex-1">
-                <h2 className="font-display text-3xl font-light text-[#F5F5F0]">{t(s.titleKey as any)}</h2>
+                <h2 className="font-display text-3xl font-light text-[#F5F5F0]">{t(s.titleKey as Parameters<typeof t>[0])}</h2>
                 <div className="gold-separator my-6 w-24" />
-                <p className="text-lg leading-relaxed text-[#888888]">{t(s.descKey as any)}</p>
-                <p className="mt-4 text-sm text-[#C9A84C]">{t(s.detailKey as any)}</p>
+                <p className="text-lg leading-relaxed text-[#888888]">{t(s.descKey as Parameters<typeof t>[0])}</p>
+                <p className="mt-4 text-sm text-[#C9A84C]">{t(s.detailKey as Parameters<typeof t>[0])}</p>
               </div>
             </div>
           ))}

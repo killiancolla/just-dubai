@@ -4,12 +4,7 @@ import Link from "next/link";
 import { Globe } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
-
-const LOCALES = [
-  { code: "fr", label: "Français" },
-  { code: "en", label: "English" },
-  { code: "ru", label: "Русский" },
-];
+import { LOCALES, getLocalizedPath as buildLocalizedPath } from "@/lib/constants";
 
 export default function LanguageDropdown() {
   const [open, setOpen] = useState(false);
@@ -17,10 +12,9 @@ export default function LanguageDropdown() {
 
   const locale = useLocale();
   const pathname = usePathname();
-  const pathWithoutLocale = pathname.replace(/^\/(fr|en|ru)/, "") || "/";
 
   function getLocalizedPath(newLocale: string) {
-    return `/${newLocale}${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`;
+    return buildLocalizedPath(pathname, newLocale);
   }
 
   useEffect(() => {

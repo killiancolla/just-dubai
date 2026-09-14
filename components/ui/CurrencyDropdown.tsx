@@ -2,9 +2,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Banknote } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useCurrency, type Currency } from "@/contexts/CurrencyContext";
-
-const CURRENCY_CODES: Currency[] = ["AED", "EUR", "USD", "RUB"];
+import { useCurrency } from "@/contexts/CurrencyContext";
+import { CURRENCIES } from "@/lib/constants";
 
 export default function CurrencyDropdown() {
   const [open, setOpen] = useState(false);
@@ -39,7 +38,7 @@ export default function CurrencyDropdown() {
       {open && (
         <div className="absolute right-0 top-full mt-3 w-44 border border-[#222222] bg-[#111111] shadow-xl">
           <div className="py-2">
-            {CURRENCY_CODES.map((code) => (
+            {CURRENCIES.map(({ code }) => (
               <button
                 key={code}
                 onClick={() => { setCurrency(code); setOpen(false); }}

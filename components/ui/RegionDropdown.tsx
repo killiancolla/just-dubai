@@ -4,15 +4,8 @@ import Link from "next/link";
 import { Banknote } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { useCurrency, type Currency } from "@/contexts/CurrencyContext";
-
-const CURRENCY_CODES: Currency[] = ["AED", "EUR", "USD", "RUB"];
-
-const LOCALES = [
-  { code: "fr", label: "Français" },
-  { code: "en", label: "English" },
-  { code: "ru", label: "Русский" },
-];
+import { useCurrency } from "@/contexts/CurrencyContext";
+import { CURRENCIES, LOCALES, getLocalizedPath as buildLocalizedPath } from "@/lib/constants";
 
 export default function RegionDropdown() {
   const [open, setOpen] = useState(false);
@@ -23,10 +16,9 @@ export default function RegionDropdown() {
   const { currency, setCurrency } = useCurrency();
   const locale = useLocale();
   const pathname = usePathname();
-  const pathWithoutLocale = pathname.replace(/^\/(fr|en|ru)/, "") || "/";
 
   function getLocalizedPath(newLocale: string) {
-    return `/${newLocale}${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`;
+    return buildLocalizedPath(pathname, newLocale);
   }
 
   useEffect(() => {
@@ -72,7 +64,7 @@ export default function RegionDropdown() {
           {/* Content */}
           <div className="py-2">
             {tab === "devise"
-              ? CURRENCY_CODES.map((code) => (
+              ? CURRENCIES.map(({ code }) => (
                   <button
                     key={code}
                     onClick={() => { setCurrency(code); setOpen(false); }}

@@ -14,7 +14,6 @@ export default function PhotoGallery({ photos, name }: Props) {
   const [lightbox, setLightbox] = useState(false);
   const t = useTranslations("common");
 
-  // Navigation clavier (flèches gauche/droite)
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") setCurrent((i) => (i - 1 + photos.length) % photos.length);
@@ -25,7 +24,6 @@ export default function PhotoGallery({ photos, name }: Props) {
     return () => window.removeEventListener("keydown", handleKey);
   }, [photos.length]);
 
-  // Précharge les images adjacentes à chaque changement de photo
   useEffect(() => {
     const toPreload = [
       photos[(current + 1) % photos.length],
@@ -91,7 +89,6 @@ export default function PhotoGallery({ photos, name }: Props) {
           )}
         </div>
 
-        {/* Desktop : grille 2 colonnes */}
         <div className="hidden sm:grid gap-1 h-full" style={{ gridTemplateColumns: side.length ? "2fr 1fr" : "1fr" }}>
           <div className="relative overflow-hidden cursor-pointer bg-[#1a1a1a]" onClick={() => setLightbox(true)}>
             <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-[#222222] to-[#111111] animate-pulse" />

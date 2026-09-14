@@ -1,12 +1,6 @@
 "use client";
-import { useCurrency, type Currency } from "@/contexts/CurrencyContext";
-
-const CURRENCIES: { code: Currency; label: string }[] = [
-  { code: "AED", label: "AED" },
-  { code: "EUR", label: "EUR" },
-  { code: "USD", label: "USD" },
-  { code: "RUB", label: "RUB" },
-];
+import { useCurrency } from "@/contexts/CurrencyContext";
+import { CURRENCIES } from "@/lib/constants";
 
 export default function CurrencySelector() {
   const { currency, setCurrency } = useCurrency();
@@ -23,7 +17,7 @@ export default function CurrencySelector() {
               : "text-[#888888] hover:text-[#F5F5F0]"
           }`}
         >
-          {c.label}{i < CURRENCIES.length - 1 && <span className="ml-1 text-[#333333]">·</span>}
+          {c.code}{i < CURRENCIES.length - 1 && <span className="ml-1 text-[#333333]">·</span>}
         </button>
       ))}
     </div>

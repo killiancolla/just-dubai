@@ -2,12 +2,12 @@ import { client, VEHICLE_BY_SLUG_QUERY, urlFor } from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import JsonLd from "@/components/ui/JsonLd";
-import Badge from "@/components/ui/Badge";
 import PhotoGallery from "@/components/catalogue/PhotoGallery";
 import type { Metadata } from "next";
 import { FaWhatsapp } from "react-icons/fa";
 import PriceDisplay from "@/components/ui/PriceDisplay";
 import { generateAlternates } from "@/lib/seo";
+import type { Locale } from "@/types/sanity";
 
 export const revalidate = 60;
 
@@ -37,7 +37,8 @@ export default async function VehicleDetailPage({ params }: { params: Promise<{ 
   if (!vehicle) notFound();
 
   const whatsappMsg = encodeURIComponent(`${t("whatsapp_msg")} ${vehicle.name}`);
-  const description = vehicle.description?.[locale] ?? vehicle.description?.fr ?? "";
+  const l = locale as Locale;
+  const description = vehicle.description?.[l] ?? vehicle.description?.fr ?? "";
 
   const productSchema = {
     "@context": "https://schema.org",
@@ -51,8 +52,8 @@ export default async function VehicleDetailPage({ params }: { params: Promise<{ 
   };
 
   const photos = (vehicle.photos ?? [])
-    .filter((photo: any) => photo?.asset?._ref)
-    .map((photo: any, i: number) => ({
+    .filter((photo: { asset?: { _ref?: string } }) => photo?.asset?._ref)
+    .map((photo: { asset: { _ref: string; _type: string }; alt?: string }, i: number) => ({
       url: urlFor(photo).url(),
       thumbUrl: urlFor(photo).width(200).height(150).url(),
       alt: `${vehicle.name} ${i + 1}`,

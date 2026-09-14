@@ -2,6 +2,7 @@ import { client, LEGAL_PAGE_QUERY } from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
 import type { Metadata } from "next";
+import type { Locale } from "@/types/sanity";
 
 export const revalidate = 60;
 
@@ -11,7 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { slug, locale } = await params;
   const page = await client.fetch(LEGAL_PAGE_QUERY, { pageId: slug });
   if (!page) return {};
-  const title = page.title?.[locale] ?? page.title?.fr ?? "";
+  const l = locale as Locale;
+  const title = page.title?.[l] ?? page.title?.fr ?? "";
   return { title: `${title} | JustDubai`, robots: { index: false } };
 }
 
@@ -23,8 +25,9 @@ export default async function LegalPage({ params }: { params: Promise<{ locale: 
   const page = await client.fetch(LEGAL_PAGE_QUERY, { pageId: slug });
   if (!page) notFound();
 
-  const title = page.title?.[locale] ?? page.title?.fr ?? "";
-  const content = page.content?.[locale] ?? page.content?.fr;
+  const l = locale as Locale;
+  const title = page.title?.[l] ?? page.title?.fr ?? "";
+  const content = page.content?.[l] ?? page.content?.fr;
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] pt-24">

@@ -6,21 +6,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/client";
 import sanityLoader from "@/lib/sanityLoader";
-import Badge from "@/components/ui/Badge";
 import { ChevronDown } from "lucide-react";
 import PriceDisplay from "@/components/ui/PriceDisplay";
-
-interface Vehicle {
-  _id: string;
-  name: string;
-  slug: { current: string };
-  brand: string;
-  model: string;
-  year: number;
-  fuel: string;
-  pricePerDay?: number;
-  mainPhoto: any;
-}
+import type { Vehicle } from "@/types/sanity";
 
 export default function VehicleCatalogue({ vehicles }: { vehicles: Vehicle[] }) {
   const t = useTranslations("cars");

@@ -8,9 +8,7 @@ export default function LogoIntro() {
   const [phase, setPhase] = useState<"logo" | "reveal" | "done">("logo");
 
   useEffect(() => {
-    // Phase 1 : logo visible pendant 1.6s
     const t1 = setTimeout(() => setPhase("reveal"), 1600);
-    // Phase 2 : overlay disparaît, page visible
     const t2 = setTimeout(() => setPhase("done"), 2600);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);

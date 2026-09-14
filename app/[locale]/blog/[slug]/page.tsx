@@ -6,6 +6,7 @@ import JsonLd from "@/components/ui/JsonLd";
 import { PortableText } from "@portabletext/react";
 import type { Metadata } from "next";
 import { generateAlternates } from "@/lib/seo";
+import type { Locale } from "@/types/sanity";
 
 export const revalidate = 60;
 
@@ -13,8 +14,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { slug, locale } = await params;
   const post = await client.fetch(BLOG_POST_BY_SLUG_QUERY, { slug });
   if (!post) return {};
-  const title = post.seo?.metaTitle ?? post.title?.[locale] ?? post.title?.fr;
-  const description = post.seo?.metaDescription ?? post.excerpt?.[locale] ?? post.excerpt?.fr;
+  const l = locale as Locale;
+  const title = post.seo?.metaTitle ?? post.title?.[l] ?? post.title?.fr;
+  const description = post.seo?.metaDescription ?? post.excerpt?.[l] ?? post.excerpt?.fr;
   return {
     title,
     description,
@@ -34,8 +36,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
   const post = await client.fetch(BLOG_POST_BY_SLUG_QUERY, { slug });
   if (!post) notFound();
 
-  const title = post.title?.[locale] ?? post.title?.fr ?? "";
-  const excerpt = post.excerpt?.[locale] ?? post.excerpt?.fr ?? "";
+  const l = locale as Locale;
+  const title = post.title?.[l] ?? post.title?.fr ?? "";
+  const excerpt = post.excerpt?.[l] ?? post.excerpt?.fr ?? "";
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -74,9 +77,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
           )}
           <div className="gold-separator my-8" />
           {excerpt && <p className="mb-8 text-lg text-[#888888] italic">{excerpt}</p>}
-          {post.body?.[locale] || post.body?.fr ? (
+          {post.body?.[l] || post.body?.fr ? (
             <div className="prose prose-invert prose-gold max-w-none text-[#888888]">
-              <PortableText value={post.body?.[locale] ?? post.body?.fr} />
+              <PortableText value={post.body?.[l] ?? post.body?.fr} />
             </div>
           ) : null}
         </div>

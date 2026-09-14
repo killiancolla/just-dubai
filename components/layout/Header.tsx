@@ -9,20 +9,8 @@ import { FaWhatsapp } from "react-icons/fa";
 import { ChevronDown } from "lucide-react";
 import CurrencyDropdown from "@/components/ui/CurrencyDropdown";
 import LanguageDropdown from "@/components/ui/LanguageDropdown";
-import { useCurrency, type Currency } from "@/contexts/CurrencyContext";
-
-const CURRENCIES: { code: Currency; label: string }[] = [
-  { code: "AED", label: "Dirham (AED)" },
-  { code: "EUR", label: "Euro (€)" },
-  { code: "USD", label: "Dollar ($)" },
-  { code: "RUB", label: "Rouble (₽)" },
-];
-
-const locales = [
-  { code: "fr", label: "Français" },
-  { code: "en", label: "English" },
-  { code: "ru", label: "Русский" },
-];
+import { useCurrency } from "@/contexts/CurrencyContext";
+import { CURRENCIES, LOCALES, getLocalizedPath as buildLocalizedPath } from "@/lib/constants";
 
 export default function Header() {
   const t = useTranslations("nav");
@@ -35,10 +23,8 @@ export default function Header() {
   const [deviseOpen, setDeviseOpen] = useState(false);
   const [langueOpen, setLangueOpen] = useState(false);
 
-  const pathWithoutLocale = pathname.replace(/^\/(fr|en|ru)/, "") || "/";
-
   function getLocalizedPath(newLocale: string) {
-    return `/${newLocale}${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`;
+    return buildLocalizedPath(pathname, newLocale);
   }
 
   const navLinks = [
@@ -53,12 +39,10 @@ export default function Header() {
   return (
     <header className="fixed top-0 z-40 w-full border-b border-[#222222] bg-[#0A0A0A]/95 backdrop-blur-sm">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-        {/* Logo */}
         <Link href={`/${locale}`} className="flex items-center">
           <Image src="/logo.png" alt="JustDubai" width={200} height={68} className="h-14 w-auto object-contain" priority sizes="165px" />
         </Link>
 
-        {/* Desktop nav */}
         <nav className="hidden items-center gap-8 lg:flex">
           {navLinks.map((link) => (
             <Link
@@ -71,14 +55,12 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Right side */}
         <div className="flex items-center gap-4">
           <div className="hidden items-center gap-4 lg:flex">
             <CurrencyDropdown />
             <LanguageDropdown />
           </div>
 
-          {/* WhatsApp CTA */}
           <a
             href="https://wa.me/971581515981"
             target="_blank"
@@ -89,7 +71,6 @@ export default function Header() {
             +971 58 151 5981
           </a>
 
-          {/* Mobile menu button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="flex flex-col gap-1.5 lg:hidden"
@@ -102,7 +83,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -174,7 +154,7 @@ export default function Header() {
                       className="overflow-hidden"
                     >
                       <div className="mt-3 flex flex-col gap-3 pl-2">
-                        {locales.map((loc) => (
+                        {LOCALES.map((loc) => (
                           <Link
                             key={loc.code}
                             href={getLocalizedPath(loc.code)}

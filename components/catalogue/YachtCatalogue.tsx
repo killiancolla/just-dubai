@@ -5,19 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/client";
-import Badge from "@/components/ui/Badge";
 import { ChevronDown } from "lucide-react";
 import PriceDisplay from "@/components/ui/PriceDisplay";
-
-interface Yacht {
-  _id: string;
-  name: string;
-  slug: { current: string };
-  lengthMeters: number;
-  capacity: number;
-  pricePerDay?: number;
-  mainPhoto: any;
-}
+import type { Yacht } from "@/types/sanity";
 
 export default function YachtCatalogue({ yachts }: { yachts: Yacht[] }) {
   const t = useTranslations("yachts");

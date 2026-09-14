@@ -2,12 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { FaInstagram, FaTiktok } from "react-icons/fa6";
-
-const locales = [
-  { code: "fr", label: "FR" },
-  { code: "en", label: "EN" },
-  { code: "ru", label: "RU" },
-];
+import { LOCALES } from "@/lib/constants";
 
 export default function Footer() {
   const t = useTranslations();
@@ -17,7 +12,6 @@ export default function Footer() {
     <footer className="border-t border-[#222222] bg-[#0A0A0A]">
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
-          {/* Brand */}
           <div className="md:col-span-1">
             <Link href={`/${locale}`}>
               <Image src="/logo.png" alt="JustDubai" width={120} height={48} className="h-10 w-auto object-contain" sizes="120px" />
@@ -33,7 +27,6 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Quick links */}
           <div>
             <h4 className="mb-4 text-xs tracking-widest text-[#C9A84C] uppercase">
               {t("footer.quick_links")}
@@ -59,7 +52,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h4 className="mb-4 text-xs tracking-widest text-[#C9A84C] uppercase">
               {t("footer.contact")}
@@ -74,7 +66,6 @@ export default function Footer() {
             </address>
           </div>
 
-          {/* Language + Social */}
           <div>
             <h4 className="mb-4 text-xs tracking-widest text-[#C9A84C] uppercase">
               {t("footer.follow")}
@@ -88,13 +79,13 @@ export default function Footer() {
               </a>
             </div>
             <div className="mt-6 flex gap-3">
-              {locales.map((loc) => (
+              {LOCALES.map((loc) => (
                 <Link
                   key={loc.code}
                   href={`/${loc.code}`}
                   className="text-xs tracking-widest text-[#888888] hover:text-[#C9A84C]"
                 >
-                  {loc.label}
+                  {loc.code.toUpperCase()}
                 </Link>
               ))}
             </div>

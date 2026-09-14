@@ -14,10 +14,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export const revalidate = 60;
 
-const SILVER_COLOR = "#A8A8A8";
-const GOLD_COLOR = "#C9A84C";
-const PLATINUM_COLOR = "#E8D08A";
-
 export default async function ClubPage() {
   const t = await getTranslations("club");
 
@@ -26,7 +22,7 @@ export default async function ClubPage() {
       name: t("silver_name"),
       trigger: t("silver_trigger"),
       desc: t("silver_desc"),
-      color: SILVER_COLOR,
+      color: "#A8A8A8",
       generalPerks: [t("silver_general_1"), t("silver_general_2")],
       carPerks: [t("silver_car_1"), t("silver_car_2"), t("silver_car_3")],
       yachtPerks: [t("silver_yacht_1"), t("silver_yacht_2"), t("silver_yacht_3")],
@@ -35,7 +31,7 @@ export default async function ClubPage() {
       name: t("gold_name"),
       trigger: t("gold_trigger"),
       desc: t("gold_desc"),
-      color: GOLD_COLOR,
+      color: "#C9A84C",
       generalPerks: [t("gold_general_1"), t("gold_general_2")],
       carPerks: [t("gold_car_1"), t("gold_car_2"), t("gold_car_3")],
       yachtPerks: [t("gold_yacht_1"), t("gold_yacht_2"), t("gold_yacht_3")],
@@ -44,7 +40,7 @@ export default async function ClubPage() {
       name: t("platinum_name"),
       trigger: t("platinum_trigger"),
       desc: t("platinum_desc"),
-      color: PLATINUM_COLOR,
+      color: "#E8D08A",
       generalPerks: [t("platinum_general_1"), t("platinum_general_2"), t("platinum_general_3")],
       carPerks: [t("platinum_car_1"), t("platinum_car_2"), t("platinum_car_3")],
       yachtPerks: [t("platinum_yacht_1"), t("platinum_yacht_2"), t("platinum_yacht_3")],
@@ -54,7 +50,6 @@ export default async function ClubPage() {
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
 
-      {/* ── HERO ─────────────────────────────────────────────────── */}
       <section className="relative flex min-h-screen items-end overflow-hidden pt-20">
         {/* Split background images */}
         <div className="absolute inset-0 grid grid-cols-2">
@@ -120,7 +115,6 @@ export default async function ClubPage() {
         </div>
       </section>
 
-      {/* ── STATUTS ──────────────────────────────────────────────── */}
       <section className="px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 text-center">
@@ -212,7 +206,6 @@ export default async function ClubPage() {
         </div>
       </section>
 
-      {/* ── CTA FINAL ────────────────────────────────────────────── */}
       <section className="px-6 pb-32 pt-8">
         <div className="mx-auto max-w-4xl border border-[#C9A84C] p-12 text-center md:p-20">
           <p className="mb-3 text-xs tracking-[0.5em] text-[#C9A84C] uppercase">
