@@ -16,15 +16,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale, slug } = await params;
   const yacht = await client.fetch(YACHT_BY_SLUG_QUERY, { slug });
   if (!yacht) return {};
+  const lengthPart = yacht.lengthMeters ? ` de ${yacht.lengthMeters}m` : "";
+  const capacityPart = yacht.capacity ? ` pour ${yacht.capacity} personnes` : "";
+  const title = `${yacht.name} | Yacht Dubai`;
+  const description = `Louez le yacht ${yacht.name}${lengthPart} à Dubaï avec JustDubai${capacityPart}. Sortie en mer sur mesure, réservation rapide sur WhatsApp, sans frais cachés.`;
   return {
-    title: `${yacht.name} | Yacht Dubai`,
-    description: `Louer le yacht ${yacht.name} à Dubai. ${yacht.lengthMeters}m, ${yacht.capacity} personnes.`,
+    title,
+    description,
     alternates: generateAlternates(locale, `/yachts/${slug}`),
     openGraph: yacht.photos?.[0]
       ? {
           images: [urlFor(yacht.photos[0]).width(1200).height(630).url()],
-          title: `${yacht.name} | Yacht Dubai`,
-          description: `Louer le yacht ${yacht.name} à Dubai. ${yacht.lengthMeters}m, ${yacht.capacity} personnes.`,
+          title,
+          description,
         }
       : undefined,
   };
