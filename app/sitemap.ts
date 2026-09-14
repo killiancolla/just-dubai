@@ -15,11 +15,16 @@ const STATIC_PATHS = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const now = new Date();
   const [vehicles, yachts, posts] = await Promise.all([
-    client.fetch<{ slug: string }[]>(`*[_type == "vehicle"] { "slug": slug.current }`),
-    client.fetch<{ slug: string }[]>(`*[_type == "yacht"] { "slug": slug.current }`),
-    client.fetch<{ slug: string; publishedAt?: string }[]>(
-      `*[_type == "blogPost"] { "slug": slug.current, publishedAt }`
+    client.fetch<{ slug: string; _updatedAt: string }[]>(
+      `*[_type == "vehicle"] { "slug": slug.current, _updatedAt }`
+    ),
+    client.fetch<{ slug: string; _updatedAt: string }[]>(
+      `*[_type == "yacht"] { "slug": slug.current, _updatedAt }`
+    ),
+    client.fetch<{ slug: string; publishedAt?: string; _updatedAt: string }[]>(
+      `*[_type == "blogPost"] { "slug": slug.current, publishedAt, _updatedAt }`
     ),
   ]);
 
@@ -27,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   for (const { path, priority, changeFrequency } of STATIC_PATHS) {
     for (const locale of LOCALES) {
-      entries.push({ url: `${BASE_URL}/${locale}${path}`, priority, changeFrequency });
+      entries.push({ url: `${BASE_URL}/${locale}${path}`, lastModified: now, priority, changeFrequency });
     }
   }
 
@@ -35,6 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const locale of LOCALES) {
       entries.push({
         url: `${BASE_URL}/${locale}/voitures/${vehicle.slug}`,
+        lastModified: vehicle._updatedAt ? new Date(vehicle._updatedAt) : now,
         priority: 0.7,
         changeFrequency: "monthly",
       });
@@ -45,6 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const locale of LOCALES) {
       entries.push({
         url: `${BASE_URL}/${locale}/yachts/${yacht.slug}`,
+        lastModified: yacht._updatedAt ? new Date(yacht._updatedAt) : now,
         priority: 0.7,
         changeFrequency: "monthly",
       });
@@ -55,7 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const locale of LOCALES) {
       entries.push({
         url: `${BASE_URL}/${locale}/blog/${post.slug}`,
-        lastModified: post.publishedAt,
+        lastModified: post.publishedAt ? new Date(post.publishedAt) : post._updatedAt ? new Date(post._updatedAt) : now,
         priority: 0.6,
         changeFrequency: "monthly",
       });
