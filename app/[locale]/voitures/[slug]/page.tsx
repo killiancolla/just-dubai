@@ -15,15 +15,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale, slug } = await params;
   const vehicle = await client.fetch(VEHICLE_BY_SLUG_QUERY, { slug });
   if (!vehicle) return {};
+  const yearPart = vehicle.year ? ` ${vehicle.year}` : "";
+  const title = `${vehicle.name} | Location Dubai`;
+  const description = `Louez le ${vehicle.brand} ${vehicle.model}${yearPart} à Dubaï avec JustDubai. Livraison 24/7 dans tout Dubaï, réservation rapide sur WhatsApp, sans caution ni frais cachés.`;
   return {
-    title: `${vehicle.name} | Location Dubai`,
-    description: `Louer le ${vehicle.name} à Dubai. ${vehicle.brand} ${vehicle.model} ${vehicle.year}.`,
+    title,
+    description,
     alternates: generateAlternates(locale, `/voitures/${slug}`),
     openGraph: vehicle.photos?.[0]
       ? {
           images: [urlFor(vehicle.photos[0]).width(1200).height(630).url()],
-          title: `${vehicle.name} | Location Dubai`,
-          description: `Louer le ${vehicle.name} à Dubai. ${vehicle.brand} ${vehicle.model} ${vehicle.year}.`,
+          title,
+          description,
         }
       : undefined,
   };
