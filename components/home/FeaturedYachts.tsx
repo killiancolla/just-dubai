@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { urlFor } from "@/sanity/lib/client";
 import PriceDisplay from "@/components/ui/PriceDisplay";
+import { formatLength } from "@/lib/units";
 import type { Yacht } from "@/types/sanity";
 
 export default function FeaturedYachts({ yachts }: { yachts: Yacht[] }) {
@@ -53,11 +54,18 @@ export default function FeaturedYachts({ yachts }: { yachts: Yacht[] }) {
                   )}
                 </div>
                 <div className="flex flex-1 flex-col p-3 sm:p-5">
-                  <p className="text-xs tracking-widest text-[#888888] uppercase">{yacht.lengthMeters}m · {yacht.capacity} pers.</p>
+                  <p className="text-xs tracking-widest text-[#888888] uppercase">{formatLength(yacht.lengthFeet, locale)} · {yacht.capacity} {t("yachts.capacity_persons")}</p>
                   <h3 className="font-display mt-0.5 text-base text-[#F5F5F0] sm:mt-1 sm:text-xl">{yacht.name}</h3>
                   <div className="mt-auto pt-2 sm:pt-4">
-                    {yacht.pricePerDay ? (
-                      <span className="text-xs text-[#C9A84C]"><PriceDisplay aed={yacht.pricePerDay} /> {t("yachts.per_day")}</span>
+                    {yacht.pricePerHour || yacht.pricePerDay ? (
+                      <div className="space-y-0.5 text-xs text-[#C9A84C]">
+                        {yacht.pricePerHour ? (
+                          <div><PriceDisplay aed={yacht.pricePerHour} /> {t("yachts.per_hour")}</div>
+                        ) : null}
+                        {yacht.pricePerDay ? (
+                          <div className="text-[#888888]"><PriceDisplay aed={yacht.pricePerDay} /> {t("yachts.per_day")}</div>
+                        ) : null}
+                      </div>
                     ) : (
                       <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("yachts.on_request")}</span>
                     )}
