@@ -1,62 +1,86 @@
 # JustDubai
 
-Site de location de voitures et yachts de luxe à Dubaï. Disponible en français, anglais et russe.
+Luxury car and yacht rental website in Dubai. Available in French, English, and Russian.
 
 ## Stack
 
-- **Next.js 16** — App Router, SSR/ISR, Turbopack
-- **Sanity v5** — CMS headless (véhicules, yachts, blog, pages légales)
-- **next-intl** — Internationalisation (fr / en / ru)
-- **Tailwind CSS v4** — Styles
-- **Framer Motion** — Animations
-- **Vercel Analytics** — Suivi des performances
+* **Next.js 16** — App Router, SSR/ISR, Turbopack
+* **Sanity v5** — Headless CMS (vehicles, yachts, blog, legal pages)
+* **next-intl** — Internationalization (fr / en / ru)
+* **Tailwind CSS v4** — Styling
+* **Framer Motion** — Animations
+* **Vercel Analytics** — Performance tracking
 
 ## Structure
 
-```
+```text
 app/
   [locale]/
-    voitures/         # Catalogue + fiches véhicules
-    yachts/           # Catalogue + fiches yachts
-    blog/             # Liste + articles
-    prestations/      # Services proposés
-    fidelite/         # Programme de fidélité
-    qui-sommes-nous/  # Page about
-    legal/[slug]/     # Mentions légales, CGV, confidentialité
-  studio/             # Sanity Studio embarqué
+    voitures/         # Vehicle catalog + details
+    yachts/           # Yacht catalog + details
+    blog/             # Blog list + articles
+    prestations/      # Services
+    fidelite/         # Loyalty program
+    qui-sommes-nous/  # About page
+    legal/[slug]/     # Legal pages
+  studio/             # Embedded Sanity Studio
+
 components/
   layout/             # Header, Footer, WhatsAppButton
-  home/               # Sections homepage
+  home/               # Homepage sections
   catalogue/          # PhotoGallery, VehicleCatalogue, YachtCatalogue
-  ui/                 # Composants réutilisables
-contexts/             # CurrencyContext (taux de change en temps réel)
+  ui/                 # Reusable components
+
+contexts/             # CurrencyContext (real-time exchange rates)
+
 lib/
   constants.ts        # CURRENCIES, LOCALES, getLocalizedPath()
   seo.ts              # generateAlternates()
+
 types/
   sanity.ts           # SanityImage, Vehicle, Yacht, BlogPost, Locale
 ```
 
-## Démarrage
+## Getting Started
 
 ```bash
 npm install
 npm run dev
 ```
 
-Variables d'environnement requises dans `.env.local` :
+Required environment variables in `.env.local`:
 
-```
+```env
 NEXT_PUBLIC_SANITY_PROJECT_ID=
 NEXT_PUBLIC_SANITY_DATASET=
 SANITY_API_TOKEN=
 ```
 
+## Project Guidelines
+
+* Keep secrets server-side. Never expose `SANITY_API_TOKEN` to the client.
+* Never commit `.env.local` or real credentials.
+* Keep `.env.example` updated without sensitive values.
+* Use Server Components by default. Only use `"use client"` when required.
+* Avoid unnecessary `force-dynamic` or Edge Runtime usage.
+* Use `next/image` for images whenever possible.
+* Keep all locales working: `/fr`, `/en`, `/ru`.
+* Do not hardcode production URLs; use environment variables when needed.
+* Avoid hydration mismatches caused by browser-only APIs, `Date.now()`, `Math.random()`, etc.
+* Do not introduce complex configuration unless it is necessary.
+* Always verify the production build before deploying.
+
+```bash
+npm run lint
+npm run build
+npm run start
+```
+
 ## Scripts
 
 ```bash
-npm run dev      # Serveur de développement (Turbopack)
-npm run build    # Build de production
-npm run start    # Démarrer le build de production
+npm run dev      # Development server (Turbopack)
+npm run build    # Production build
+npm run start    # Start production build
 npm run lint     # ESLint
 ```
