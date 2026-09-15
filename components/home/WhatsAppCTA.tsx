@@ -15,10 +15,17 @@ export default function WhatsAppCTA() {
           {t("cta_title")}
         </h2>
         <a
-          href="https://wa.me/971581515981"
+          href="https://api.whatsapp.com/send/?phone=971581515981&text=Hello%2C%20I%27m%20contacting%20you%20from%20your%20website&type=phone_number&app_absent=0"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-3 bg-[#0A0A0A] px-8 py-4 text-sm tracking-widest text-[#F5F5F0] transition-opacity hover:opacity-80"
+          onClick={() => {
+            if (typeof window !== "undefined" && window.gtag) {
+              window.gtag("event", "conversion", {
+                send_to: "AW-18438884789/QSeNCI3evvgcELWbrNhE",
+              });
+            }
+          }}
         >
           <FaWhatsapp className="h-5 w-5 shrink-0" />
           {t("cta")}
