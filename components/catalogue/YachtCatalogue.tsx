@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/client";
 import { ChevronDown } from "lucide-react";
 import PriceDisplay from "@/components/ui/PriceDisplay";
+import { formatLength, displayLengthToFeet } from "@/lib/units";
 import type { Yacht } from "@/types/sanity";
 
 export default function YachtCatalogue({ yachts }: { yachts: Yacht[] }) {
@@ -19,15 +20,16 @@ export default function YachtCatalogue({ yachts }: { yachts: Yacht[] }) {
   const [minCapacity, setMinCapacity] = useState(0);
 
   const filtered = useMemo(() => {
-    let result = yachts.filter((y) => {
-      if (y.lengthMeters < minLength) return false;
+    const minLengthFeet = minLength ? displayLengthToFeet(minLength, locale) : 0;
+    const result = yachts.filter((y) => {
+      if ((y.lengthFeet ?? 0) < minLengthFeet) return false;
       if (y.capacity < minCapacity) return false;
       return true;
     });
     if (sort === "alpha") result.sort((a, b) => a.name.localeCompare(b.name));
-    else if (sort === "length-desc") result.sort((a, b) => (b.lengthMeters ?? 0) - (a.lengthMeters ?? 0));
+    else if (sort === "length-desc") result.sort((a, b) => (b.lengthFeet ?? 0) - (a.lengthFeet ?? 0));
     return result;
-  }, [yachts, sort, minLength, minCapacity]);
+  }, [yachts, sort, minLength, minCapacity, locale]);
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] pt-20">
@@ -106,12 +108,19 @@ export default function YachtCatalogue({ yachts }: { yachts: Yacht[] }) {
                   </div>
                   <div className="p-5">
                     <p className="text-xs tracking-widest text-[#888888] uppercase">
-                      {yacht.lengthMeters}{t("length_m")} · {yacht.capacity} {t("capacity_persons")}
+                      {formatLength(yacht.lengthFeet, locale)} · {yacht.capacity} {t("capacity_persons")}
                     </p>
                     <h2 className="font-display mt-1 text-xl text-[#F5F5F0]">{yacht.name}</h2>
                     <div className="mt-4">
-                      {yacht.pricePerDay ? (
-                        <span className="text-xs text-[#C9A84C]">{tCommon("starting_from")} <PriceDisplay aed={yacht.pricePerDay} /> {t("per_day")}</span>
+                      {yacht.pricePerHour || yacht.pricePerDay ? (
+                        <div className="space-y-0.5 text-xs text-[#C9A84C]">
+                          {yacht.pricePerHour ? (
+                            <div><PriceDisplay aed={yacht.pricePerHour} /> {t("per_hour")}</div>
+                          ) : null}
+                          {yacht.pricePerDay ? (
+                            <div className="text-[#888888]"><PriceDisplay aed={yacht.pricePerDay} /> {t("per_day")}</div>
+                          ) : null}
+                        </div>
                       ) : (
                         <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("on_request")}</span>
                       )}
