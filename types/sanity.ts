@@ -26,8 +26,10 @@ export interface Yacht {
   _id: string;
   name: string;
   slug: { current: string };
-  lengthMeters: number;
+  /** Longueur en pieds ; convertie en mètres à l'affichage pour fr et ru. */
+  lengthFeet: number;
   capacity: number;
+  pricePerHour?: number;
   pricePerDay?: number;
   mainPhoto: SanityImage;
   photos?: SanityImage[];
