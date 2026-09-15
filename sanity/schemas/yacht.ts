@@ -7,9 +7,15 @@ export default defineType({
   fields: [
     defineField({ name: "name", title: "Nom", type: "string", validation: (r) => r.required() }),
     defineField({ name: "slug", title: "Slug", type: "slug", options: { source: "name" }, validation: (r) => r.required() }),
-    defineField({ name: "lengthMeters", title: "Longueur (m)", type: "number" }),
+    defineField({
+      name: "lengthFeet",
+      title: "Longueur (pieds)",
+      type: "number",
+      description: "En pieds, comme le nombre qui figure dans le nom du bateau. Le site convertit en mètres pour le français et le russe.",
+    }),
     defineField({ name: "capacity", title: "Capacité (personnes)", type: "number" }),
-    defineField({ name: "pricePerDay", title: "Prix par jour (AED)", type: "number" }),
+    defineField({ name: "pricePerHour", title: "Prix par heure (AED)", type: "number", description: "Tarif horaire public." }),
+    defineField({ name: "pricePerDay", title: "Prix par jour (AED)", type: "number", description: "Tarif journée public (24 h)." }),
     defineField({ name: "featured", title: "Mis en avant", type: "boolean", initialValue: false }),
     defineField({ name: "amenities", title: "Équipements", type: "array", of: [{ type: "string" }], options: { layout: "tags" } }),
     defineField({ name: "photos", title: "Photos", type: "array", of: [{ type: "image", options: { hotspot: true } }] }),
@@ -25,10 +31,10 @@ export default defineType({
     }),
   ],
   preview: {
-    select: { title: "name", subtitle: "lengthMeters" },
+    select: { title: "name", subtitle: "lengthFeet" },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     prepare(val: any) {
-      return { title: val.title, subtitle: val.subtitle ? `${val.subtitle}m` : "" };
+      return { title: val.title, subtitle: val.subtitle ? `${val.subtitle} ft` : "" };
     },
   },
 });
