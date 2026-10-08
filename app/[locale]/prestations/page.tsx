@@ -2,6 +2,8 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { generateAlternates } from "@/lib/seo";
+import { FaWhatsapp } from "react-icons/fa";
+import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -49,14 +51,25 @@ const services = [
 
 export default async function PrestationsPage({ params }: { params: Promise<{ locale: string }> }) {
   const t = await getTranslations("services");
+  const tCro = await getTranslations("cro");
+  const tMsg = await getTranslations("wa_msg");
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] pt-20">
-      <div className="border-b border-[#222222] bg-[#111111] px-6 py-16">
+      <div className="border-b border-[#222222] bg-[#111111] px-5 py-10 sm:px-6 sm:py-16">
         <div className="mx-auto max-w-7xl">
           <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">Services</p>
-          <h1 className="font-display text-4xl font-light text-[#F5F5F0] md:text-5xl">{t("title")}</h1>
+          <h1 className="font-display text-3xl font-light text-[#F5F5F0] sm:text-4xl md:text-5xl">{t("title")}</h1>
           <p className="mt-2 text-[#888888]">{t("subtitle")}</p>
+          <WhatsAppLink
+            message={tMsg("general")}
+            service="general"
+            placement="services_header"
+            className="mt-6 inline-flex w-full items-center justify-center gap-3 bg-[#C9A84C] px-8 py-4 text-sm tracking-wider text-[#0A0A0A] transition-colors hover:bg-[#E8D08A] sm:w-auto"
+          >
+            <FaWhatsapp className="h-5 w-5 shrink-0" />
+            {tCro("hero_cta_whatsapp")}
+          </WhatsAppLink>
         </div>
       </div>
 
@@ -70,7 +83,7 @@ export default async function PrestationsPage({ params }: { params: Promise<{ lo
               <div className="relative aspect-4/3 w-full flex-1 overflow-hidden border border-[#222222]">
                 <Image
                   src={s.image}
-                  alt={s.key}
+                  alt={t(s.titleKey as Parameters<typeof t>[0])}
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -86,17 +99,18 @@ export default async function PrestationsPage({ params }: { params: Promise<{ lo
           ))}
         </div>
 
-        <div className="mt-20 border border-[#222222] p-12 text-center">
+        <div className="mt-16 border border-[#222222] p-6 text-center sm:mt-20 sm:p-12">
           <h2 className="font-display mb-4 text-3xl font-light text-[#F5F5F0]">{t("cta_title")}</h2>
           <p className="mb-8 text-[#888888]">{t("cta_desc")}</p>
-          <a
-            href="https://wa.me/971581515981"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-[#C9A84C] px-8 py-4 text-sm tracking-widest text-[#0A0A0A] transition-colors hover:bg-[#E8D08A]"
+          <WhatsAppLink
+            message={tMsg("general")}
+            service="general"
+            placement="services_footer"
+            className="inline-flex w-full items-center justify-center gap-3 bg-[#C9A84C] px-8 py-4 text-sm tracking-widest text-[#0A0A0A] transition-colors hover:bg-[#E8D08A] sm:w-auto"
           >
+            <FaWhatsapp className="h-5 w-5 shrink-0" />
             {t("cta_btn")}
-          </a>
+          </WhatsAppLink>
         </div>
       </div>
     </div>

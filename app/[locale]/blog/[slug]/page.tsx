@@ -2,6 +2,7 @@ import { client, BLOG_POST_BY_SLUG_QUERY, urlFor } from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
+import WhatsAppHelpBlock from "@/components/whatsapp/WhatsAppHelpBlock";
 import JsonLd from "@/components/ui/JsonLd";
 import { PortableText } from "@portabletext/react";
 import type { Metadata } from "next";
@@ -37,6 +38,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
   if (!post) notFound();
 
   const l = locale as Locale;
+  const tCro = await getTranslations("cro");
+  const tMsg = await getTranslations("wa_msg");
+  const tWa = await getTranslations("whatsapp");
   const title = post.title?.[l] ?? post.title?.fr ?? "";
   const excerpt = post.excerpt?.[l] ?? post.excerpt?.fr ?? "";
 
@@ -82,6 +86,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
               <PortableText value={post.body?.[l] ?? post.body?.fr} />
             </div>
           ) : null}
+          <WhatsAppHelpBlock
+            className="mt-14"
+            title={tWa("cta_title")}
+            cta={tCro("hero_cta_whatsapp")}
+            message={tMsg("general")}
+            service="general"
+            placement="blog_article"
+          />
         </div>
       </div>
     </>

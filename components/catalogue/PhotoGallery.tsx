@@ -38,7 +38,7 @@ export default function PhotoGallery({ photos, name }: Props) {
 
   if (!photos.length) {
     return (
-      <div className="flex h-[50vh] items-center justify-center bg-[#111111]">
+      <div className="flex h-[42vh] items-center justify-center bg-[#111111] sm:h-[50vh]">
         <span className="text-[#888888]">{t("photo_soon")}</span>
       </div>
     );
@@ -48,7 +48,7 @@ export default function PhotoGallery({ photos, name }: Props) {
 
   return (
     <>
-      <div className="h-[50vh] sm:h-[55vh]">
+      <div className="h-[42vh] sm:h-[50vh]">
         <div className="relative h-full sm:hidden cursor-pointer bg-[#1a1a1a]" onClick={() => setLightbox(true)}>
           <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-[#222222] to-[#111111] animate-pulse" />
           <Image

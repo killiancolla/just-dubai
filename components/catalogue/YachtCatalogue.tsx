@@ -1,21 +1,24 @@
 "use client";
-import { useState, useMemo } from "react";
+import { Fragment, useState, useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { urlFor } from "@/sanity/lib/client";
 import { ChevronDown } from "lucide-react";
-import PriceDisplay from "@/components/ui/PriceDisplay";
-import { formatLength, displayLengthToFeet } from "@/lib/units";
+import { displayLengthToFeet } from "@/lib/units";
+import YachtCard, { yachtSortPrice } from "@/components/catalogue/YachtCard";
+import WhatsAppHelpBlock from "@/components/whatsapp/WhatsAppHelpBlock";
 import type { Yacht } from "@/types/sanity";
+
+/** Position du bloc « Vous ne savez pas quel yacht choisir ? » dans la grille. */
+const HELP_AFTER = 6;
 
 export default function YachtCatalogue({ yachts }: { yachts: Yacht[] }) {
   const t = useTranslations("yachts");
-  const tCommon = useTranslations("common");
+  const tCro = useTranslations("cro");
+  const tMsg = useTranslations("wa_msg");
   const locale = useLocale();
 
-  const [sort, setSort] = useState("alpha");
+  // Par défaut : du moins cher au plus cher.
+  const [sort, setSort] = useState("price-asc");
   const [minLength, setMinLength] = useState(0);
   const [minCapacity, setMinCapacity] = useState(0);
 
@@ -23,112 +26,121 @@ export default function YachtCatalogue({ yachts }: { yachts: Yacht[] }) {
     const minLengthFeet = minLength ? displayLengthToFeet(minLength, locale) : 0;
     const result = yachts.filter((y) => {
       if ((y.lengthFeet ?? 0) < minLengthFeet) return false;
-      if (y.capacity < minCapacity) return false;
+      if ((y.capacity ?? 0) < minCapacity) return false;
       return true;
     });
-    if (sort === "alpha") result.sort((a, b) => a.name.localeCompare(b.name));
+    if (sort === "price-asc") result.sort((a, b) => yachtSortPrice(a) - yachtSortPrice(b) || a.name.localeCompare(b.name));
+    else if (sort === "price-desc") result.sort((a, b) => {
+      const pa = yachtSortPrice(a), pb = yachtSortPrice(b);
+      // « Sur devis » reste en fin de liste dans les deux sens.
+      if (!Number.isFinite(pa)) return 1;
+      if (!Number.isFinite(pb)) return -1;
+      return pb - pa;
+    });
+    else if (sort === "alpha") result.sort((a, b) => a.name.localeCompare(b.name));
     else if (sort === "length-desc") result.sort((a, b) => (b.lengthFeet ?? 0) - (a.lengthFeet ?? 0));
     return result;
   }, [yachts, sort, minLength, minCapacity, locale]);
 
+  const helpBlock = (
+    <div className="col-span-full">
+      <WhatsAppHelpBlock
+        title={tCro("yachts_help_title")}
+        desc={tCro("yachts_help_desc")}
+        cta={tCro("yachts_help_cta")}
+        message={tMsg("yachts_help")}
+        service="yacht"
+        placement="catalogue_help"
+      />
+    </div>
+  );
+
+  const inputClass =
+    "w-full bg-[#111111] border border-[#222222] px-3 py-2.5 text-sm text-[#F5F5F0] placeholder-[#555] outline-none focus:border-[#C9A84C] sm:w-24";
+
   return (
     <div className="min-h-screen bg-[#0A0A0A] pt-20">
-      <div className="border-b border-[#222222] bg-[#111111] px-6 py-16">
+      <div className="border-b border-[#222222] bg-[#111111] px-5 py-6 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-7xl">
           <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("label")}</p>
-          <h1 className="font-display text-4xl font-light text-[#F5F5F0] md:text-5xl">{t("title")}</h1>
-          <p className="mt-2 text-[#888888]">{t("subtitle")}</p>
+          <h1 className="font-display text-3xl font-light text-[#F5F5F0] sm:text-4xl md:text-5xl">{t("title")}</h1>
+          <p className="mt-2 text-sm text-[#888888] sm:text-base">{t("subtitle")}</p>
+          <p className="mt-3 text-xs tracking-wide text-[#C9A84C]/90">{tCro("reassure_yacht")}</p>
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 py-12">
-        <div className="mb-8 flex flex-wrap items-center gap-4 border-b border-[#222222] pb-8">
-          <div className="flex items-center gap-2">
-            <label className="text-xs text-[#888888]">{t("filter_length")} min :</label>
+      <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-10">
+        <div className="mb-4 grid grid-cols-[1.4fr_1fr_1fr] items-end gap-2 border-b border-[#222222] pb-4 sm:mb-8 sm:flex sm:flex-wrap sm:items-center sm:gap-6 sm:pb-8">
+          <div className="relative sm:flex sm:items-center sm:gap-2">
+            <label htmlFor="yacht-sort" className="sr-only text-xs tracking-widest text-[#888888] uppercase sm:not-sr-only">
+              {t("sort_by")}
+            </label>
+            <select
+              id="yacht-sort"
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+              className="w-full appearance-none bg-[#111111] border border-[#222222] pl-3 pr-8 py-2.5 text-sm text-[#F5F5F0] outline-none focus:border-[#C9A84C] sm:w-auto sm:pl-4 sm:pr-10"
+            >
+              <option value="price-asc">{tCro("sort_price_asc")}</option>
+              <option value="price-desc">{tCro("sort_price_desc")}</option>
+              <option value="length-desc">{t("sort_largest")}</option>
+              <option value="alpha">A → Z</option>
+            </select>
+            <ChevronDown className="pointer-events-none absolute bottom-3.5 right-3 h-3 w-3 text-[#888888] sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2" strokeWidth={1.5} />
+          </div>
+          <div className="sm:flex sm:items-center sm:gap-2">
+            <label htmlFor="yacht-length" className="mb-1 block truncate text-[10px] text-[#888888] sm:mb-0 sm:text-xs">
+              {t("filter_length")} min
+            </label>
             <input
+              id="yacht-length"
               type="number"
+              inputMode="numeric"
               min={0}
               value={minLength || ""}
               onChange={(e) => setMinLength(Number(e.target.value))}
-              className="w-20 bg-[#111111] border border-[#222222] px-3 py-2 text-sm text-[#F5F5F0] outline-none focus:border-[#C9A84C]"
+              className={inputClass}
             />
           </div>
-          <div className="flex items-center gap-2">
-            <label className="text-xs text-[#888888]">{t("filter_capacity")} min :</label>
+          <div className="sm:flex sm:items-center sm:gap-2">
+            <label htmlFor="yacht-capacity" className="mb-1 block truncate text-[10px] text-[#888888] sm:mb-0 sm:text-xs">
+              {t("filter_capacity")} min
+            </label>
             <input
+              id="yacht-capacity"
               type="number"
+              inputMode="numeric"
               min={0}
               value={minCapacity || ""}
               onChange={(e) => setMinCapacity(Number(e.target.value))}
-              className="w-20 bg-[#111111] border border-[#222222] px-3 py-2 text-sm text-[#F5F5F0] outline-none focus:border-[#C9A84C]"
+              className={inputClass}
             />
-          </div>
-          <div className="relative flex items-center gap-2">
-            <span className="text-xs tracking-widest text-[#888888] uppercase">{t("sort_by")}</span>
-            <select
-              value={sort}
-              onChange={(e) => setSort(e.target.value)}
-              className="appearance-none bg-[#111111] border border-[#222222] pl-4 pr-10 py-2 text-sm text-[#F5F5F0] outline-none focus:border-[#C9A84C]"
-            >
-              <option value="alpha">A → Z</option>
-              <option value="length-desc">{t("sort_largest")}</option>
-            </select>
-            <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-[#888888]" strokeWidth={1.5} />
           </div>
         </div>
 
-        <p className="mb-6 text-sm text-[#888888]">{filtered.length} yacht{filtered.length !== 1 ? "s" : ""}</p>
+        <p className="mb-4 text-sm text-[#888888] sm:mb-5">{tCro("yachts_count", { count: filtered.length })}</p>
 
         {filtered.length === 0 ? (
-          <div className="py-24 text-center text-[#888888]">{t("no_results")}</div>
+          <div className="space-y-8 py-12 text-center text-[#888888]">
+            <p>{t("no_results")}</p>
+            {helpBlock}
+          </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
             {filtered.map((yacht, i) => (
-              <motion.div
-                key={yacht._id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: Math.min(i * 0.05, 0.3) }}
-              >
-                <Link href={`/${locale}/yachts/${yacht.slug.current}`} className="luxury-card group block bg-[#111111]">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    {yacht.mainPhoto ? (
-                      <Image
-                        src={urlFor(yacht.mainPhoto).width(600).height(450).url()}
-                        alt={yacht.name}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-[#888888] text-sm">
-                        {tCommon("photo_soon")}
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-5">
-                    <p className="text-xs tracking-widest text-[#888888] uppercase">
-                      {formatLength(yacht.lengthFeet, locale)} · {yacht.capacity} {t("capacity_persons")}
-                    </p>
-                    <h2 className="font-display mt-1 text-xl text-[#F5F5F0]">{yacht.name}</h2>
-                    <div className="mt-4">
-                      {yacht.pricePerHour || yacht.pricePerDay ? (
-                        <div className="space-y-0.5 text-xs text-[#C9A84C]">
-                          {yacht.pricePerHour ? (
-                            <div><PriceDisplay aed={yacht.pricePerHour} /> {t("per_hour")}</div>
-                          ) : null}
-                          {yacht.pricePerDay ? (
-                            <div className="text-[#888888]"><PriceDisplay aed={yacht.pricePerDay} /> {t("per_day")}</div>
-                          ) : null}
-                        </div>
-                      ) : (
-                        <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("on_request")}</span>
-                      )}
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
+              <Fragment key={yacht._id}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: Math.min(i * 0.05, 0.3) }}
+                  className="h-full"
+                >
+                  <YachtCard yacht={yacht} compact placement="catalogue_card" priority={i < 2} />
+                </motion.div>
+                {i === HELP_AFTER - 1 && filtered.length > HELP_AFTER ? helpBlock : null}
+              </Fragment>
             ))}
+            {filtered.length <= HELP_AFTER ? helpBlock : null}
           </div>
         )}
       </div>

@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { generateAlternates } from "@/lib/seo";
+import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
 
 export const revalidate = 60;
 
@@ -30,6 +31,7 @@ const teamMembers = [
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations("about");
+  const tMsg = await getTranslations("wa_msg");
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] pt-20">
@@ -45,14 +47,14 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <div className="max-w-2xl">
           <p className="text-lg leading-relaxed text-[#888888]">{t("para_1")}</p>
           <p className="mt-6 text-lg leading-relaxed text-[#888888]">{t("para_2")}</p>
-          <a
-            href="https://wa.me/971581515981"
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppLink
+            message={tMsg("general")}
+            service="general"
+            placement="about"
             className="mt-10 inline-flex items-center gap-3 bg-[#C9A84C] px-8 py-4 text-sm tracking-widest text-[#0A0A0A] transition-colors hover:bg-[#E8D08A]"
           >
             {t("cta")}
-          </a>
+          </WhatsAppLink>
         </div>
 
         <div className="gold-separator my-20" />

@@ -11,10 +11,14 @@ import CurrencyDropdown from "@/components/ui/CurrencyDropdown";
 import LanguageDropdown from "@/components/ui/LanguageDropdown";
 import { useCurrency } from "@/contexts/CurrencyContext";
 import { CURRENCIES, LOCALES, getLocalizedPath as buildLocalizedPath } from "@/lib/constants";
+import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
+import { WHATSAPP_DISPLAY } from "@/lib/whatsapp";
 
 export default function Header() {
   const t = useTranslations("nav");
   const tRegion = useTranslations("region");
+  const tMsg = useTranslations("wa_msg");
+  const tCro = useTranslations("cro");
   const locale = useLocale();
   const pathname = usePathname();
   const { currency, setCurrency } = useCurrency();
@@ -61,20 +65,32 @@ export default function Header() {
             <LanguageDropdown />
           </div>
 
-          <a
-            href="https://wa.me/971581515981"
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppLink
+            message={tMsg("general")}
+            service="general"
+            placement="header"
             className="hidden items-center gap-2 rounded border border-[#C9A84C] px-4 py-2 text-xs tracking-widest text-[#C9A84C] transition-colors hover:bg-[#C9A84C] hover:text-[#0A0A0A] lg:flex"
           >
             <FaWhatsapp className="h-3.5 w-3.5" />
-            +971 58 151 5981
-          </a>
+            {WHATSAPP_DISPLAY}
+          </WhatsAppLink>
+
+          {/* Accès WhatsApp direct sur mobile, à côté du menu */}
+          <WhatsAppLink
+            message={tMsg("general")}
+            service="general"
+            placement="header_mobile"
+            ariaLabel={tCro("header_whatsapp_aria")}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#C9A84C]/60 text-[#C9A84C] lg:hidden"
+          >
+            <FaWhatsapp className="h-5 w-5" />
+          </WhatsAppLink>
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="flex flex-col gap-1.5 lg:hidden"
+            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
             aria-label="Menu"
+            aria-expanded={menuOpen}
           >
             <span className={`block h-px w-6 bg-[#F5F5F0] transition-transform ${menuOpen ? "translate-y-2.5 rotate-45" : ""}`} />
             <span className={`block h-px w-6 bg-[#F5F5F0] transition-opacity ${menuOpen ? "opacity-0" : ""}`} />

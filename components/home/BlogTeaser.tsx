@@ -13,7 +13,7 @@ export default function BlogTeaser({ posts }: { posts: BlogPost[] }) {
   if (!posts?.length) return null;
 
   return (
-    <section className="bg-[#111111] py-24 px-6">
+    <section className="bg-[#111111] px-5 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 flex flex-col gap-3 sm:mb-16 sm:flex-row sm:items-end sm:justify-between">
           <div>

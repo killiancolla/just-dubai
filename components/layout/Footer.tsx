@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { FaInstagram, FaTiktok } from "react-icons/fa6";
 import { LOCALES } from "@/lib/constants";
+import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
+import { WHATSAPP_DISPLAY } from "@/lib/whatsapp";
 
 export default function Footer() {
   const t = useTranslations();
@@ -17,14 +19,14 @@ export default function Footer() {
               <Image src="/logo.png" alt="JustDubai" width={120} height={48} className="h-10 w-auto object-contain" sizes="120px" />
             </Link>
             <p className="mt-4 text-sm text-[#888888]">{t("footer.tagline")}</p>
-            <a
-              href="https://wa.me/971581515981"
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppLink
+              message={t("wa_msg.general")}
+              service="general"
+              placement="footer"
               className="mt-4 block text-sm text-[#C9A84C]"
             >
-              +971 58 151 5981
-            </a>
+              {WHATSAPP_DISPLAY}
+            </WhatsAppLink>
           </div>
 
           <div>
@@ -59,9 +61,14 @@ export default function Footer() {
             <address className="not-italic space-y-3 text-sm text-[#888888]">
               <p>Dubai, United Arab Emirates</p>
               <p>
-                <a href="https://wa.me/971581515981" className="hover:text-[#C9A84C]">
-                  WhatsApp: +971 58 151 5981
-                </a>
+                <WhatsAppLink
+                  message={t("wa_msg.general")}
+                  service="general"
+                  placement="footer_contact"
+                  className="hover:text-[#C9A84C]"
+                >
+                  WhatsApp: {WHATSAPP_DISPLAY}
+                </WhatsAppLink>
               </p>
             </address>
           </div>
