@@ -71,11 +71,11 @@ export default function SocialProof({ data }: { data: SocialProofData | null }) 
   ].filter(Boolean) as { icon: React.ReactNode; value: number; label: string }[];
 
   return (
-    <section className="bg-[#0A0A0A] py-24 px-6">
+    <section className="bg-[#0A0A0A] px-5 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-16 text-center">
+        <div className="mb-10 text-center sm:mb-16">
           <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("label")}</p>
-          <h2 className="font-display text-4xl font-light text-[#F5F5F0]">{t("title")}</h2>
+          <h2 className="font-display text-3xl font-light sm:text-4xl text-[#F5F5F0]">{t("title")}</h2>
         </div>
         <div className={`grid grid-cols-2 gap-3 sm:gap-8 md:grid-cols-${stats.length}`}>
           {stats.map((stat, i) => (

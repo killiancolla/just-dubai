@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { generateAlternates } from "@/lib/seo";
+import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -16,6 +17,7 @@ export const revalidate = 60;
 
 export default async function ClubPage() {
   const t = await getTranslations("club");
+  const tMsg = await getTranslations("wa_msg");
 
   const tiers = [
     {
@@ -92,14 +94,14 @@ export default async function ClubPage() {
           <p className="mb-10 max-w-lg text-lg leading-relaxed text-[#AAAAAA]">
             {t("hero_tagline")}
           </p>
-          <a
-            href="https://wa.me/971581515981"
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppLink
+            message={tMsg("loyalty")}
+            service="loyalty"
+            placement="club_hero"
             className="inline-flex items-center gap-3 bg-[#C9A84C] px-10 py-4 text-sm tracking-widest text-[#0A0A0A] uppercase transition-colors hover:bg-[#E8D08A]"
           >
             {t("hero_cta")}
-          </a>
+          </WhatsAppLink>
         </div>
       </section>
 
@@ -215,14 +217,14 @@ export default async function ClubPage() {
             {t("join_title")}
           </h2>
           <p className="mb-10 text-[#888888]">{t("join_desc")}</p>
-          <a
-            href="https://wa.me/971581515981"
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppLink
+            message={tMsg("loyalty")}
+            service="loyalty"
+            placement="club_join"
             className="inline-flex items-center gap-3 bg-[#C9A84C] px-10 py-4 text-sm tracking-widest text-[#0A0A0A] uppercase transition-colors hover:bg-[#E8D08A]"
           >
             {t("join_cta")}
-          </a>
+          </WhatsAppLink>
         </div>
       </section>
     </div>

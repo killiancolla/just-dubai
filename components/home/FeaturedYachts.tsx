@@ -1,34 +1,35 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
-import { urlFor } from "@/sanity/lib/client";
-import PriceDisplay from "@/components/ui/PriceDisplay";
-import { formatLength } from "@/lib/units";
+import YachtCard, { yachtSortPrice } from "@/components/catalogue/YachtCard";
+import WhatsAppHelpBlock from "@/components/whatsapp/WhatsAppHelpBlock";
 import type { Yacht } from "@/types/sanity";
 
 export default function FeaturedYachts({ yachts }: { yachts: Yacht[] }) {
   const t = useTranslations();
   const locale = useLocale();
+  // Du moins cher au plus cher, comme sur le catalogue.
+  const sorted = [...yachts].sort((a, b) => yachtSortPrice(a) - yachtSortPrice(b));
+  const shown = sorted.slice(0, sorted.length >= 8 ? 8 : Math.min(4, sorted.length));
 
   return (
-    <section className="bg-[#111111] py-24 px-6">
+    <section className="bg-[#111111] px-5 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-8 flex flex-col gap-3 sm:mb-16 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-8 flex flex-col gap-3 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("yachts.label")}</p>
             <h2 className="font-display text-3xl font-light text-[#F5F5F0] sm:text-4xl md:text-5xl">
               {t("home.featured_yachts")}
             </h2>
           </div>
-          <Link href={`/${locale}/yachts`} className="self-start text-sm tracking-widests text-[#888888] hover:text-[#C9A84C] sm:self-auto">
+          <Link href={`/${locale}/yachts`} className="self-start text-sm tracking-widest text-[#888888] hover:text-[#C9A84C] sm:self-auto">
             {t("common.view_all")} →
           </Link>
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
-          {yachts.map((yacht, i) => (
+          {shown.map((yacht, i) => (
             <motion.div
               key={yacht._id}
               initial={{ opacity: 0, y: 30 }}
@@ -37,44 +38,20 @@ export default function FeaturedYachts({ yachts }: { yachts: Yacht[] }) {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className="h-full"
             >
-              <Link href={`/${locale}/yachts/${yacht.slug.current}`} className="luxury-card group flex h-full flex-col bg-[#0A0A0A]">
-                <div className="relative aspect-4/3 shrink-0 overflow-hidden">
-                  {yacht.mainPhoto ? (
-                    <Image
-                      src={urlFor(yacht.mainPhoto).width(600).height(450).url()}
-                      alt={yacht.name}
-                      fill
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="flex h-full items-center justify-center bg-[#1a1a1a]">
-                      <span className="text-[#888888]">{t("common.photo_soon")}</span>
-                    </div>
-                  )}
-                </div>
-                <div className="flex flex-1 flex-col p-3 sm:p-5">
-                  <p className="text-xs tracking-widest text-[#888888] uppercase">{formatLength(yacht.lengthFeet, locale)} · {yacht.capacity} {t("yachts.capacity_persons")}</p>
-                  <h3 className="font-display mt-0.5 text-base text-[#F5F5F0] sm:mt-1 sm:text-xl">{yacht.name}</h3>
-                  <div className="mt-auto pt-2 sm:pt-4">
-                    {yacht.pricePerHour || yacht.pricePerDay ? (
-                      <div className="space-y-0.5 text-xs text-[#C9A84C]">
-                        {yacht.pricePerHour ? (
-                          <div><PriceDisplay aed={yacht.pricePerHour} /> {t("yachts.per_hour")}</div>
-                        ) : null}
-                        {yacht.pricePerDay ? (
-                          <div className="text-[#888888]"><PriceDisplay aed={yacht.pricePerDay} /> {t("yachts.per_day")}</div>
-                        ) : null}
-                      </div>
-                    ) : (
-                      <span className="text-xs text-[#C9A84C] tracking-widest uppercase">{t("yachts.on_request")}</span>
-                    )}
-                  </div>
-                </div>
-              </Link>
+              <YachtCard yacht={yacht} compact placement="home_featured" headingLevel="h3" />
             </motion.div>
           ))}
         </div>
+
+        <WhatsAppHelpBlock
+          className="mt-8 sm:mt-12"
+          title={t("cro.yachts_help_title")}
+          desc={t("cro.yachts_help_desc")}
+          cta={t("cro.yachts_help_cta")}
+          message={t("wa_msg.yachts_help")}
+          service="yacht"
+          placement="home_yachts_help"
+        />
       </div>
     </section>
   );

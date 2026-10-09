@@ -15,11 +15,11 @@ export default function LoyaltyTeaser() {
   const locale = useLocale();
 
   return (
-    <section className="bg-[#F5F0E8] py-24 px-6">
+    <section className="bg-[#F5F0E8] px-5 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-16 text-center">
+        <div className="mb-10 text-center sm:mb-16">
           <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("label")}</p>
-          <h2 className="font-display text-4xl font-light text-[#1A1A1A] md:text-5xl">{t("title")}</h2>
+          <h2 className="font-display text-3xl font-light sm:text-4xl text-[#1A1A1A] md:text-5xl">{t("title")}</h2>
           <p className="mt-4 text-[#666666]">{t("subtitle")}</p>
         </div>
 

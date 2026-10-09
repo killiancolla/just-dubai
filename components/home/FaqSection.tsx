@@ -17,11 +17,11 @@ export default function FaqSection({ items }: { items: FaqItem[] }) {
   if (!items?.length) return null;
 
   return (
-    <section className="bg-[#0A0A0A] py-24 px-6">
+    <section className="bg-[#0A0A0A] px-5 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-3xl">
-        <div className="mb-16 text-center">
+        <div className="mb-10 text-center sm:mb-16">
           <p className="mb-2 text-xs tracking-[0.4em] text-[#C9A84C] uppercase">{t("label")}</p>
-          <h2 className="font-display text-4xl font-light text-[#F5F5F0] md:text-5xl">{t("title")}</h2>
+          <h2 className="font-display text-3xl font-light sm:text-4xl text-[#F5F5F0] md:text-5xl">{t("title")}</h2>
         </div>
 
         <div className="divide-y divide-[#1E1E1E]">

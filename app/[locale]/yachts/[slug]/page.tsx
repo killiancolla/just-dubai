@@ -5,6 +5,9 @@ import JsonLd from "@/components/ui/JsonLd";
 import PhotoGallery from "@/components/catalogue/PhotoGallery";
 import type { Metadata } from "next";
 import { FaWhatsapp } from "react-icons/fa";
+import Link from "next/link";
+import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
+import DetailBookingCTA, { type PriceLine } from "@/components/catalogue/DetailBookingCTA";
 import PriceDisplay from "@/components/ui/PriceDisplay";
 import Badge from "@/components/ui/Badge";
 import { generateAlternates } from "@/lib/seo";
@@ -52,14 +55,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function YachtDetailPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
   const t = await getTranslations("yachts");
+  const tCro = await getTranslations("cro");
+  const tMsg = await getTranslations("wa_msg");
   const yacht = await client.fetch(YACHT_BY_SLUG_QUERY, { slug });
   if (!yacht) notFound();
 
-  const whatsappMsg = encodeURIComponent(`${t("whatsapp_msg")} ${yacht.name}`);
+  const whatsappMsg = tMsg("yacht", { name: yacht.name });
   const l = locale as Locale;
   const description = yacht.description?.[l] ?? yacht.description?.fr ?? "";
 
   const lengthLabel = formatLength(yacht.lengthFeet, locale);
+
+  const priceLines: PriceLine[] = [
+    ...(yacht.pricePerHour ? [{ aed: yacht.pricePerHour, suffix: t("per_hour") }] : []),
+    ...(yacht.pricePerDay ? [{ aed: yacht.pricePerDay, suffix: t("per_day") }] : []),
+  ];
 
   const photos = (yacht.photos ?? []).map((photo: { asset: { _ref: string; _type: string }; alt?: string }, i: number) => ({
     url: urlFor(photo).url(),
@@ -87,11 +97,21 @@ export default async function YachtDetailPage({ params }: { params: Promise<{ lo
       <div className="min-h-screen bg-[#0A0A0A] pt-20">
         <PhotoGallery photos={photos} name={yacht.name} />
 
-        <div className="mx-auto max-w-5xl px-6 py-16">
+        <div className="mx-auto max-w-5xl px-5 pb-16 pt-8 sm:px-6 sm:pt-12 lg:py-16">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
             <div className="lg:col-span-2">
               <p className="text-xs tracking-[0.4em] text-[#888888] uppercase">Yacht{lengthLabel ? ` · ${lengthLabel}` : ""}</p>
-              <h1 className="font-display mt-2 text-4xl font-light text-[#F5F5F0] md:text-5xl">{yacht.name}</h1>
+              <h1 className="font-display mt-2 text-3xl font-light text-[#F5F5F0] sm:text-4xl md:text-5xl">{yacht.name}</h1>
+              <DetailBookingCTA
+                service="yacht"
+                item={yacht.name}
+                message={whatsappMsg}
+                prices={priceLines}
+                onRequestLabel={t("on_request")}
+                ctaLabel={tCro("check_availability")}
+                shortCtaLabel={tCro("availability_short")}
+                reassurance={tCro("reassure_yacht")}
+              />
               <div className="gold-separator my-8" />
               <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
                 {[
@@ -121,9 +141,15 @@ export default async function YachtDetailPage({ params }: { params: Promise<{ lo
                   <p className="text-[#888888] leading-relaxed">{description}</p>
                 </>
               )}
+              <Link
+                href={`/${locale}/yachts`}
+                className="mt-10 inline-block text-xs tracking-widest text-[#888888] uppercase hover:text-[#C9A84C]"
+              >
+                ← {tCro("back_yachts")}
+              </Link>
             </div>
 
-            <div className="lg:col-span-1">
+            <div className="hidden lg:col-span-1 lg:block">
               <div className="sticky top-24 border border-[#222222] p-8">
                 <p className="text-xs tracking-widest text-[#888888] uppercase">{t("booking")}</p>
                 {yacht.pricePerHour || yacht.pricePerDay ? (
@@ -131,28 +157,30 @@ export default async function YachtDetailPage({ params }: { params: Promise<{ lo
                     {yacht.pricePerHour ? (
                       <div className="flex items-baseline justify-between gap-4">
                         <span className="text-xs tracking-widest text-[#888888] uppercase">{t("price_hourly")}</span>
-                        <span className="font-display text-xl text-[#C9A84C]"><PriceDisplay aed={yacht.pricePerHour} /></span>
+                        <span className="font-display whitespace-nowrap text-xl text-[#C9A84C]"><PriceDisplay aed={yacht.pricePerHour} /></span>
                       </div>
                     ) : null}
                     {yacht.pricePerDay ? (
                       <div className="flex items-baseline justify-between gap-4 border-t border-[#222222] pt-3">
                         <span className="text-xs tracking-widest text-[#888888] uppercase">{t("price_daily")}</span>
-                        <span className="font-display text-xl text-[#C9A84C]"><PriceDisplay aed={yacht.pricePerDay} /></span>
+                        <span className="font-display whitespace-nowrap text-xl text-[#C9A84C]"><PriceDisplay aed={yacht.pricePerDay} /></span>
                       </div>
                     ) : null}
                   </div>
                 ) : (
                   <p className="font-display mt-2 text-xl text-[#C9A84C]">{t("on_request")}</p>
                 )}
-                <a
-                  href={`https://wa.me/971581515981?text=${whatsappMsg}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <WhatsAppLink
+                  message={whatsappMsg}
+                  service="yacht"
+                  placement="detail_sidebar"
+                  item={yacht.name}
                   className="mt-8 flex w-full items-center justify-center gap-3 bg-[#C9A84C] py-4 text-sm tracking-widest text-[#0A0A0A] transition-colors hover:bg-[#E8D08A]"
                 >
                   <FaWhatsapp className="h-5 w-5" />
-                  {t("book_cta")}
-                </a>
+                  {tCro("check_availability")}
+                </WhatsAppLink>
+                <p className="mt-4 text-center text-xs leading-relaxed text-[#888888]">{tCro("reassure_yacht")}</p>
               </div>
             </div>
           </div>
